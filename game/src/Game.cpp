@@ -1,5 +1,7 @@
 #include "Game.h"
 
+#include <OgreException.h>
+
 Game::Game(void)
 {
 }
