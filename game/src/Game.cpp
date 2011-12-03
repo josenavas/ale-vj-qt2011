@@ -17,19 +17,19 @@ Game::~Game(void)
 
 bool Game::go(void)
 {
-#ifdef _DEBUG
-	mPluginsCfg = "plugins_d.cfg";
-	mResourcesCfg = "resources_d.cfg";
-#else
-	mPluginsCfg = "plugins.cfg";
-	mResourcesCfg = "resources.cfg";
-#endif
-
-	//Contruir Ogre::Root
-	mRoot = new Ogre::Root(mPluginsCfg);
-
-	//set up resources
-	// Load resource paths from config file
+//#ifdef _DEBUG
+//	mPluginsCfg = "plugins_d.cfg";
+//	mResourcesCfg = "resources_d.cfg";
+//#else
+//	mPluginsCfg = "plugins.cfg";
+//	mResourcesCfg = "resources.cfg";
+//#endif
+//
+//	//Contruir Ogre::Root
+//	mRoot = new Ogre::Root(mPluginsCfg);
+//
+//	//set up resources
+//	// Load resource paths from config file
 
 	return true;
 }
