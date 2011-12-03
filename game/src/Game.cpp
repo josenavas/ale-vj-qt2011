@@ -1,17 +1,36 @@
 #include "Game.h"
 
 #include <OgreException.h>
+#include <OgreConfigFile.h>
 
 Game::Game(void)
+	: mRoot(0),
+	mResourcesCfg(Ogre::StringUtil::BLANK),
+	mPluginsCfg(Ogre::StringUtil::BLANK)
 {
 }
 
 Game::~Game(void)
 {
+	delete mRoot;
 }
 
 bool Game::go(void)
 {
+#ifdef _DEBUG
+	mPluginsCfg = "plugins_d.cfg";
+	mResourcesCfg = "resources_d.cfg";
+#else
+	mPluginsCfg = "plugins.cfg";
+	mResourcesCfg = "resources.cfg";
+#endif
+
+	//Contruir Ogre::Root
+	mRoot = new Ogre::Root(mPluginsCfg);
+
+	//set up resources
+	// Load resource paths from config file
+
 	return true;
 }
 
