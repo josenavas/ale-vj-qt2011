@@ -11,3 +11,8 @@ AbstractScene::~AbstractScene(void)
 void AbstractScene::createScene(void)
 {
 }
+
+Ogre::SceneManager* AbstractScene::getSceneManager(void)
+{
+	return mSceneMgr;
+}
