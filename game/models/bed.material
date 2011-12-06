@@ -1,0 +1,45 @@
+
+material Material#393_OgreMax
+{
+	technique Map#2
+	{
+		pass Map#3
+		{
+			specular 0 0 0 1 10
+		}
+
+	}
+
+}
+
+
+
+material Material#133_OgreMax
+{
+	technique Map#0
+	{
+		pass Map#1
+		{
+			specular 0 0 0 1 25
+		}
+
+	}
+
+}
+
+
+
+material Material#426_OgreMax
+{
+	technique Map#4
+	{
+		pass Map#5
+		{
+			specular 0 0 0 1 10
+		}
+
+	}
+
+}
+
+
