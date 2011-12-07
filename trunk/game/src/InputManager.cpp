@@ -1,5 +1,6 @@
 #include "InputManager.h"
 #include <OgreEntity.h>
+#include <OgreQuaternion.h>
 
 InputManager::InputManager(Ogre::RenderWindow* window, Ogre::SceneManager* sceneManager)
 {
@@ -32,12 +33,15 @@ InputManager::InputManager(Ogre::RenderWindow* window, Ogre::SceneManager* scene
 	mKeyboard->setEventCallback(this);
 
 	mDirection = Ogre::Vector3::ZERO;
+	mRotateEx = Ogre::Real(0);
 
 	mShutDown = false;
+	mRaySceneQuery = mSceneMgr->createRayQuery(Ogre::Ray());
 }
 
 InputManager::~InputManager(void)
 {
+	mSceneMgr->destroyQuery(mRaySceneQuery);
 }
 
 void InputManager::windowResized(Ogre::RenderWindow* rw)
@@ -74,7 +78,11 @@ bool InputManager::frameRenderingQueued(const Ogre::FrameEvent& evt)
 	mKeyboard->capture();
 	mMouse->capture();
 
-	mPlayerNode->translate(mDirection * evt.timeSinceLastFrame, Ogre::Node::TS_LOCAL);
+	if(!collisionControl())
+	{
+		mPlayerNode->translate(mDirection * evt.timeSinceLastFrame, Ogre::Node::TS_LOCAL);
+		mPlayerNode->yaw(Ogre::Degree(mRotateEx));
+	}
 	mAnimationState->addTime(evt.timeSinceLastFrame);
 
 	return true;
@@ -95,10 +103,10 @@ bool InputManager::keyPressed(const OIS::KeyEvent& evt)
 		mDirection.z = mMove;
 		break;
 	case OIS::KC_A:
-		mDirection.x = -mMove;
+		mRotateEx = mRotate;
 		break;
 	case OIS::KC_D:
-		mDirection.x = mMove;
+		mRotateEx = -mRotate;
 		break;
 	default:
 		break;
@@ -118,10 +126,10 @@ bool InputManager::keyReleased(const OIS::KeyEvent& evt)
 		mDirection.z = 0;
 		break;
 	case OIS::KC_A:
-		mDirection.x = 0;
+		mRotateEx = Ogre::Real(0);
 		break;
 	case OIS::KC_D:
-		mDirection.x = 0;
+		mRotateEx = Ogre::Real(0);
 		break;
 	default:
 		break;
@@ -142,4 +150,32 @@ bool InputManager::mousePressed(const OIS::MouseEvent& evt, OIS::MouseButtonID i
 bool InputManager::mouseReleased(const OIS::MouseEvent& evt, OIS::MouseButtonID id)
 {
 	return true;
+}
+
+bool InputManager::collisionControl(void)
+{
+	Ogre::Vector3 orientation = mPlayerNode->getOrientation() * (-Ogre::Vector3::UNIT_Z);
+	Ogre::Vector3 playerPos = mPlayerNode->getPosition();
+	//Ogre::Vector3 size = mPlayerNode->getAttachedObject("Woman")->getBoundingBox().getSize();
+	orientation.normalise();
+	//Ogre::Vector3 rayOrigin = playerPos + orientation;
+	Ogre::Ray playerRay(playerPos, orientation);
+
+	mRaySceneQuery->setRay(playerRay);
+	mRaySceneQuery->setSortByDistance(false);
+
+	Ogre::RaySceneQueryResult &result = mRaySceneQuery->execute();
+	Ogre::RaySceneQueryResult::iterator itr = result.begin();
+
+	for(itr; itr != result.end(); itr++)
+	{
+		if (itr->movable->getName() != "Woman")
+		{
+			if (itr->distance < 20.0f && mDirection.z == -mMove) return true;
+			break;
+		}
+	}
+
+
+	return false;
 }

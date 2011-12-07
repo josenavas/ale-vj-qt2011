@@ -1,0 +1,27 @@
+material Textures/MRAMOR
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture MRAMOR6X6.jpg
+			}
+		}
+	}
+}
+
+material Textures/Wood
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture Wood_Floor.jpg
+			}
+		}
+	}
+}

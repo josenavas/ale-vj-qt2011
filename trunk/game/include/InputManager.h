@@ -29,6 +29,9 @@ public:
 	virtual bool mouseReleased(const OIS::MouseEvent& evt, OIS::MouseButtonID id);
 
 private:
+
+	bool collisionControl(void);
+
 	OIS::InputManager* mInputManager;
 	OIS::Mouse* mMouse;
 	OIS::Keyboard* mKeyboard;
@@ -43,4 +46,7 @@ private:
 	Ogre::AnimationState* mAnimationState;
 
 	bool mShutDown;
+	Ogre::Real mRotateEx;
+
+	Ogre::RaySceneQuery *mRaySceneQuery;
 };
