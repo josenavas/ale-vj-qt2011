@@ -8,7 +8,11 @@ material Skin
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 25
-			scene_blend one_minus_src_colour dest_colour
+			texture_unit
+			{
+				texture upperbodyfemale.dds
+				tex_coord_set 0
+			}
 		}
 
 	}
@@ -26,7 +30,11 @@ material bra
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 25
-			scene_blend one_minus_src_colour dest_colour
+			texture_unit
+			{
+				texture underwear.dds
+				tex_coord_set 0
+			}
 			cull_hardware none
 			cull_software none
 		}
@@ -37,7 +45,7 @@ material bra
 
 
 
-material Skin
+material Skin1
 {
 	technique
 	{
@@ -46,7 +54,11 @@ material Skin
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 25
-			scene_blend one_minus_src_colour dest_colour
+			texture_unit
+			{
+				texture legfemale.dds
+				tex_coord_set 0
+			}
 		}
 
 	}
@@ -55,7 +67,7 @@ material Skin
 
 
 
-material Skin
+material Skin2
 {
 	technique
 	{
@@ -64,7 +76,11 @@ material Skin
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 25
-			scene_blend one_minus_src_colour dest_colour
+			texture_unit
+			{
+				texture footfemale.dds
+				tex_coord_set 0
+			}
 		}
 
 	}
@@ -82,7 +98,11 @@ material underwear
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 25
-			scene_blend one_minus_src_colour dest_colour
+			texture_unit
+			{
+				texture underwear.dds
+				tex_coord_set 0
+			}
 		}
 
 	}
@@ -91,7 +111,7 @@ material underwear
 
 
 
-material Skin
+material Skin3
 {
 	technique
 	{
@@ -100,7 +120,11 @@ material Skin
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 25
-			scene_blend one_minus_src_colour dest_colour
+			texture_unit
+			{
+				texture upperbodyfemale.dds
+				tex_coord_set 0
+			}
 		}
 
 	}
@@ -109,7 +133,7 @@ material Skin
 
 
 
-material skin
+material skin4
 {
 	technique
 	{
@@ -118,7 +142,11 @@ material skin
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 10
-			scene_blend one_minus_src_colour dest_colour
+			texture_unit
+			{
+				texture handfemale.dds
+				tex_coord_set 0
+			}
 		}
 
 	}
@@ -127,7 +155,7 @@ material skin
 
 
 
-material 3-Default
+material Default
 {
 	technique
 	{
@@ -136,7 +164,11 @@ material 3-Default
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 10
-			scene_blend one_minus_src_colour dest_colour
+			texture_unit
+			{
+				texture handfemale.dds
+				tex_coord_set 0
+			}
 		}
 
 	}
