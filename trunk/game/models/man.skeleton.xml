@@ -432,5 +432,11 @@
     <animations />
     <animationlinks>
         <animationlink skeletonName="man_anim_activate.skeleton" scale="1" />
+		<animationlink skeletonName="man_anim_idle.skeleton" scale="1" />
+		<animationlink skeletonName="man_anim_pickup.skeleton" scale="1" />
+		<animationlink skeletonName="man_anim_run.skeleton" scale="1" />
+		<animationlink skeletonName="man_anim_walk.skeleton" scale="1" />
+		<animationlink skeletonName="man_anim_walkleft.skeleton" scale="1" />
+		<animationlink skeletonName="man_anim_walkright.skeleton" scale="1" />
     </animationlinks>
 </skeleton>
