@@ -5,6 +5,7 @@
 #include <OISKeyboard.h>
 #include <OISMouse.h>
 #include <OgreWindowEventUtilities.h>
+#include <OgreEntity.h>
 
 class InputManager : public Ogre::WindowEventListener, public Ogre::FrameListener, public OIS::KeyListener, public OIS::MouseListener
 {
@@ -30,7 +31,13 @@ public:
 
 private:
 
-	bool collisionControl(void);
+	typedef enum {eIDLE, eWALKING, eLEFT, eRIGHT, ePICKUP, eACTIVATE} ePlayerState;
+
+	bool collisionControlZNeg(void);
+	bool collisionControlXPos(void);
+	bool collisionControlXNeg(void);
+
+	void orientatePlayer(void);
 
 	OIS::InputManager* mInputManager;
 	OIS::Mouse* mMouse;
@@ -43,10 +50,17 @@ private:
 	Ogre::Vector3 mDirection;
 
 	Ogre::SceneNode *mPlayerNode;
+	Ogre::Entity *mPlayerEntity;
 	Ogre::AnimationState* mAnimationState;
 
+	Ogre::SceneNode *mCamYawNode;
+	Ogre::SceneNode *mCamPitchNode;
+	Ogre::SceneNode *mCamNode;
+
 	bool mShutDown;
-	Ogre::Real mRotateEx;
+	bool mLeftShiftDown;
+
+	ePlayerState mState;
 
 	Ogre::RaySceneQuery *mRaySceneQuery;
 };

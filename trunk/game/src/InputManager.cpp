@@ -1,16 +1,21 @@
 #include "InputManager.h"
-#include <OgreEntity.h>
 #include <OgreQuaternion.h>
+#include "Definitions.h"
 
 InputManager::InputManager(Ogre::RenderWindow* window, Ogre::SceneManager* sceneManager)
 {
 	mWindow = window;
 	mSceneMgr = sceneManager;
 
-	mPlayerNode = sceneManager->getSceneNode("PlayerNode");
-	mAnimationState = ((Ogre::Entity*)(mPlayerNode->getAttachedObject("Woman")))->getAnimationState("walk");
+	mPlayerNode = sceneManager->getSceneNode(PLAYER_NODE_NAME);
+	mPlayerEntity = (Ogre::Entity*)(mPlayerNode->getAttachedObject(PLAYER_MESH_NAME));
+	mAnimationState = mPlayerEntity->getAnimationState("anim_idle");
 	mAnimationState->setLoop(true);
-	mAnimationState->setEnabled(false);
+	mAnimationState->setEnabled(true);
+
+	mCamPitchNode = sceneManager->getSceneNode(CAMERA_PITCH_NODE_NAME);
+	mCamYawNode = sceneManager->getSceneNode(CAMERA_YAW_NODE_NAME);
+	mCamNode = sceneManager->getSceneNode(CAMERA_NODE_NAME);
 
 	Ogre::LogManager::getSingletonPtr()->logMessage("*** Initializing OIS***");
 	OIS::ParamList pl;
@@ -26,17 +31,19 @@ InputManager::InputManager(Ogre::RenderWindow* window, Ogre::SceneManager* scene
 	mKeyboard = static_cast<OIS::Keyboard*>(mInputManager->createInputObject(OIS::OISKeyboard, true));
 	mMouse = static_cast<OIS::Mouse*>(mInputManager->createInputObject(OIS::OISMouse, true));
 
-	mRotate = Ogre::Real(0.13);//0.13;
-	mMove = 250;
+	mRotate = Ogre::Real(0.13);
+	mMove = 150;
 
 	mMouse->setEventCallback(this);
 	mKeyboard->setEventCallback(this);
 
 	mDirection = Ogre::Vector3::ZERO;
-	mRotateEx = Ogre::Real(0);
 
 	mShutDown = false;
 	mRaySceneQuery = mSceneMgr->createRayQuery(Ogre::Ray());
+
+	mState = eIDLE;
+	mLeftShiftDown = false;
 }
 
 InputManager::~InputManager(void)
@@ -78,10 +85,55 @@ bool InputManager::frameRenderingQueued(const Ogre::FrameEvent& evt)
 	mKeyboard->capture();
 	mMouse->capture();
 
-	if(!collisionControl())
+	switch(mState)
 	{
-		mPlayerNode->translate(mDirection * evt.timeSinceLastFrame, Ogre::Node::TS_LOCAL);
-		mPlayerNode->yaw(Ogre::Degree(mRotateEx));
+	case eWALKING:
+		orientatePlayer();
+		if(!collisionControlZNeg())
+		{
+			mPlayerNode->translate(mDirection * evt.timeSinceLastFrame, Ogre::Node::TS_LOCAL);
+			mCamYawNode->translate(mDirection * evt.timeSinceLastFrame, Ogre::Node::TS_LOCAL);
+		}
+		break;
+	case eLEFT:
+		orientatePlayer();
+		if(!collisionControlXNeg())
+		{
+			mPlayerNode->translate(mDirection * evt.timeSinceLastFrame, Ogre::Node::TS_LOCAL);
+			mCamYawNode->translate(mDirection * evt.timeSinceLastFrame, Ogre::Node::TS_LOCAL);
+		}
+		break;
+	case eRIGHT:
+		orientatePlayer();
+		if(!collisionControlXPos())
+		{
+			mPlayerNode->translate(mDirection * evt.timeSinceLastFrame, Ogre::Node::TS_LOCAL);
+			mCamYawNode->translate(mDirection * evt.timeSinceLastFrame, Ogre::Node::TS_LOCAL);
+		}
+		break;
+	case ePICKUP:
+		if(mAnimationState->hasEnded())
+		{
+			mPlayerNode->translate(Ogre::Vector3(0,30,0));
+		}
+		else
+		{
+			mPlayerNode->translate(Ogre::Vector3(0,-(evt.timeSinceLastFrame/mAnimationState->getLength()) * 30,0));
+		}
+	case eACTIVATE:
+		if(mAnimationState->hasEnded())
+		{
+			mAnimationState->setEnabled(false);
+			mAnimationState = mPlayerEntity->getAnimationState("anim_idle");
+			mAnimationState->setEnabled(true);
+			mAnimationState->setLoop(true);
+			mState = eIDLE;
+		}
+		break;
+	case eIDLE:
+		break;
+	default:
+		break;
 	}
 	mAnimationState->addTime(evt.timeSinceLastFrame);
 
@@ -96,17 +148,57 @@ bool InputManager::keyPressed(const OIS::KeyEvent& evt)
 		mShutDown = true;
 		break;
 	case OIS::KC_W:
-		mDirection.z = -mMove;
-		mAnimationState->setEnabled(true);
-		break;
-	case OIS::KC_S:
-		mDirection.z = mMove;
+		// El movimiento hacia delante siempre es respecto al adelante de la camara!!!
+		if(mState == eIDLE)
+		{
+			mAnimationState->setEnabled(false);
+			if(mLeftShiftDown)
+			{
+				mAnimationState = mPlayerEntity->getAnimationState("anim_run");
+				mDirection.z = -mMove * 2;
+			}
+			else
+			{
+				mAnimationState = mPlayerEntity->getAnimationState("anim_walk");
+				mDirection.z = -mMove;
+			}
+			mAnimationState->setEnabled(true);
+			mAnimationState->setLoop(true);
+			mState = eWALKING;
+		}
 		break;
 	case OIS::KC_A:
-		mRotateEx = mRotate;
+		if(mState == eIDLE)
+		{
+			mDirection.x = -mMove;
+			mAnimationState->setEnabled(false);
+			mAnimationState = mPlayerEntity->getAnimationState("anim_walkleft");
+			mAnimationState->setEnabled(true);
+			mAnimationState->setLoop(true);
+			mState = eLEFT;
+		}
 		break;
 	case OIS::KC_D:
-		mRotateEx = -mRotate;
+		if(mState == eIDLE)
+		{
+			mDirection.x = mMove;
+			mAnimationState->setEnabled(false);
+			mAnimationState = mPlayerEntity->getAnimationState("anim_walkright");
+			mAnimationState->setEnabled(true);
+			mAnimationState->setLoop(true);
+			mState = eRIGHT;
+		}
+		break;
+	case OIS::KC_LSHIFT:
+		mLeftShiftDown = true;
+		if(eWALKING == mState)
+		{
+			mDirection.z = -mMove * 2;
+			mAnimationState->setEnabled(false);
+			mAnimationState = mPlayerEntity->getAnimationState("anim_run");
+			mAnimationState->setEnabled(true);
+			mAnimationState->setLoop(true);
+		}
 		break;
 	default:
 		break;
@@ -119,17 +211,48 @@ bool InputManager::keyReleased(const OIS::KeyEvent& evt)
 	switch (evt.key)
 	{
 	case OIS::KC_W:
-		mDirection.z = 0;
-		mAnimationState->setEnabled(false);
-		break;
-	case OIS::KC_S:
-		mDirection.z = 0;
+		if(eWALKING == mState)
+		{
+			mDirection.z = 0;
+			mAnimationState->setEnabled(false);
+			mAnimationState = mPlayerEntity->getAnimationState("anim_idle");
+			mAnimationState->setEnabled(true);
+			mAnimationState->setLoop(true);
+			mState = eIDLE;
+		}
 		break;
 	case OIS::KC_A:
-		mRotateEx = Ogre::Real(0);
+		if(eLEFT == mState)
+		{
+			mDirection.x = 0;
+			mAnimationState->setEnabled(false);
+			mAnimationState = mPlayerEntity->getAnimationState("anim_idle");
+			mAnimationState->setEnabled(true);
+			mAnimationState->setLoop(true);
+			mState = eIDLE;
+		}
 		break;
 	case OIS::KC_D:
-		mRotateEx = Ogre::Real(0);
+		if(eRIGHT == mState)
+		{
+			mDirection.x = 0;
+			mAnimationState->setEnabled(false);
+			mAnimationState = mPlayerEntity->getAnimationState("anim_idle");
+			mAnimationState->setEnabled(true);
+			mAnimationState->setLoop(true);
+			mState = eIDLE;
+		}
+		break;
+	case OIS::KC_LSHIFT:
+		mLeftShiftDown = false;
+		if(mState == eWALKING)
+		{
+			mDirection.z = -mMove;
+			mAnimationState->setEnabled(false);
+			mAnimationState = mPlayerEntity->getAnimationState("anim_walk");
+			mAnimationState->setEnabled(true);
+			mAnimationState->setLoop(true);
+		}
 		break;
 	default:
 		break;
@@ -139,11 +262,44 @@ bool InputManager::keyReleased(const OIS::KeyEvent& evt)
 
 bool InputManager::mouseMoved(const OIS::MouseEvent& evt)
 {
+	mCamYawNode->yaw(Ogre::Degree(-mRotate * evt.state.X.rel), Ogre::Node::TS_WORLD);
+	if(evt.state.Y.rel < 0)
+	{
+		if(mCamNode->_getDerivedPosition().y > Ogre::Real(30)) mCamPitchNode->pitch(Ogre::Degree(-mRotate * evt.state.Y.rel), Ogre::Node::TS_LOCAL);
+	}
+	else
+	{
+		if(mCamNode->_getDerivedPosition().y < Ogre::Real(260)) mCamPitchNode->pitch(Ogre::Degree(-mRotate * evt.state.Y.rel), Ogre::Node::TS_LOCAL);
+	}
 	return true;
 }
 
 bool InputManager::mousePressed(const OIS::MouseEvent& evt, OIS::MouseButtonID id)
 {
+	if(mState == eIDLE)
+	{
+		switch(id)
+		{
+		case OIS::MB_Left:
+			mAnimationState->setEnabled(false);
+			mAnimationState = mPlayerEntity->getAnimationState("anim_activate");
+			mAnimationState->setTimePosition(Ogre::Real(0));
+			mAnimationState->setEnabled(true);
+			mAnimationState->setLoop(false);
+			mState = eACTIVATE;
+			break;
+		case OIS::MB_Right:
+			mAnimationState->setEnabled(false);
+			mAnimationState = mPlayerEntity->getAnimationState("anim_pickup");
+			mAnimationState->setTimePosition(Ogre::Real(0));
+			mAnimationState->setEnabled(true);
+			mAnimationState->setLoop(false);
+			mState = ePICKUP;
+			break;
+		default:
+			break;
+		}
+	}
 	return true;
 }
 
@@ -152,30 +308,86 @@ bool InputManager::mouseReleased(const OIS::MouseEvent& evt, OIS::MouseButtonID 
 	return true;
 }
 
-bool InputManager::collisionControl(void)
+bool InputManager::collisionControlZNeg(void)
 {
 	Ogre::Vector3 orientation = mPlayerNode->getOrientation() * (-Ogre::Vector3::UNIT_Z);
 	Ogre::Vector3 playerPos = mPlayerNode->getPosition();
-	//Ogre::Vector3 size = mPlayerNode->getAttachedObject("Woman")->getBoundingBox().getSize();
-	orientation.normalise();
-	//Ogre::Vector3 rayOrigin = playerPos + orientation;
+
 	Ogre::Ray playerRay(playerPos, orientation);
 
 	mRaySceneQuery->setRay(playerRay);
-	mRaySceneQuery->setSortByDistance(false);
 
 	Ogre::RaySceneQueryResult &result = mRaySceneQuery->execute();
 	Ogre::RaySceneQueryResult::iterator itr = result.begin();
 
+	Ogre::Real threshold = Ogre::Real(20);
+	if(mLeftShiftDown) threshold = Ogre::Real(30);
+
 	for(itr; itr != result.end(); itr++)
 	{
-		if (itr->movable->getName() != "Woman")
+		if (itr->movable->getName() != PLAYER_MESH_NAME)
 		{
-			if (itr->distance < 20.0f && mDirection.z == -mMove) return true;
+			if (itr->distance < threshold) return true;
 			break;
 		}
 	}
-
-
 	return false;
+}
+
+bool InputManager::collisionControlXPos(void)
+{
+	Ogre::Vector3 orientation = mPlayerNode->getOrientation() * (Ogre::Vector3::UNIT_X);
+
+	Ogre::Vector3 playerPos = mPlayerNode->getPosition();
+	Ogre::Ray playerRay(playerPos, orientation);
+
+	mRaySceneQuery->setRay(playerRay);
+
+	Ogre::RaySceneQueryResult &result = mRaySceneQuery->execute();
+	Ogre::RaySceneQueryResult::iterator itr = result.begin();
+
+	Ogre::Real threshold = Ogre::Real(20);
+
+	for(itr; itr != result.end(); itr++)
+	{
+		if (itr->movable->getName() != PLAYER_MESH_NAME)
+		{
+			if (itr->distance < threshold) return true;
+			break;
+		}
+	}
+	return false;
+}
+
+bool InputManager::collisionControlXNeg(void)
+{
+	Ogre::Vector3 orientation = mPlayerNode->getOrientation() * (-Ogre::Vector3::UNIT_X);
+
+	Ogre::Vector3 playerPos = mPlayerNode->getPosition();
+	Ogre::Ray playerRay(playerPos, orientation);
+
+	mRaySceneQuery->setRay(playerRay);
+
+	Ogre::RaySceneQueryResult &result = mRaySceneQuery->execute();
+	Ogre::RaySceneQueryResult::iterator itr = result.begin();
+
+	Ogre::Real threshold = Ogre::Real(20);
+
+	for(itr; itr != result.end(); itr++)
+	{
+		if (itr->movable->getName() != PLAYER_MESH_NAME)
+		{
+			if (itr->distance < threshold) return true;
+			break;
+		}
+	}
+	return false;
+}
+
+void InputManager::orientatePlayer(void)
+{
+	Ogre::Vector3 playerOrientation = mPlayerNode->getOrientation() * (-Ogre::Vector3::UNIT_Z);
+	Ogre::Vector3 cameraOrientation = mCamYawNode->getOrientation() * (-Ogre::Vector3::UNIT_Z);
+	Ogre::Quaternion q = Ogre::Vector3(playerOrientation.x, 1, playerOrientation.z).getRotationTo(Ogre::Vector3(cameraOrientation.x, 1, cameraOrientation.z));
+	mPlayerNode->yaw( q.getYaw());
 }
