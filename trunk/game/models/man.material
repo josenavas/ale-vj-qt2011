@@ -8,7 +8,11 @@ material skin
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 10
-			scene_blend one_minus_src_colour dest_colour
+			
+			texture_unit
+			{
+				texture upperbodymale.dds
+			}
 		}
 
 	}
@@ -26,7 +30,11 @@ material Secondpants
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 10
-			scene_blend one_minus_src_colour dest_colour
+			
+			texture_unit
+			{
+				texture pants04m2.dds
+			}
 		}
 
 	}
@@ -44,7 +52,6 @@ material skin
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 10
-			scene_blend one_minus_src_colour dest_colour
 		}
 
 	}
@@ -62,7 +69,11 @@ material shoes
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 10
-			scene_blend one_minus_src_colour dest_colour
+			
+			texture_unit
+			{
+				texture shoes04f.dds
+			}
 		}
 
 	}
@@ -80,7 +91,6 @@ material skin
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 10
-			scene_blend one_minus_src_colour dest_colour
 		}
 
 	}
@@ -98,7 +108,11 @@ material shirt
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 10
-			scene_blend one_minus_src_colour dest_colour
+			
+			texture_unit
+			{
+				texture shirt04m.dds
+			}
 		}
 
 	}
@@ -116,7 +130,6 @@ material skin
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 10
-			scene_blend one_minus_src_colour dest_colour
 		}
 
 	}
@@ -134,7 +147,6 @@ material shirt
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 10
-			scene_blend one_minus_src_colour dest_colour
 		}
 
 	}
@@ -152,7 +164,6 @@ material skin
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 10
-			scene_blend one_minus_src_colour dest_colour
 		}
 
 	}
@@ -170,7 +181,11 @@ material 3-Default
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 10
-			scene_blend one_minus_src_colour dest_colour
+			
+			texture_unit
+			{
+				texture headhuman.dds
+			}
 		}
 
 	}
@@ -188,7 +203,11 @@ material righteye
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 10
-			scene_blend one_minus_src_colour dest_colour
+			
+			texture_unit
+			{
+				texture eyedefault.dds
+			}
 		}
 
 	}
@@ -206,7 +225,6 @@ material righteye
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 10
-			scene_blend one_minus_src_colour dest_colour
 		}
 
 	}
@@ -224,7 +242,11 @@ material 20-Default
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 10
-			scene_blend one_minus_src_colour dest_colour
+			
+			texture_unit
+			{
+				texture earshuman.dds
+			}
 		}
 
 	}
