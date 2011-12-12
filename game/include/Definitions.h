@@ -1,0 +1,6 @@
+#define PLAYER_MESH_NAME "Player"
+#define PLAYER_CAM_NAME "PlayerCam"
+#define PLAYER_NODE_NAME "PlayerNode"
+#define CAMERA_YAW_NODE_NAME "CamYawNode"
+#define CAMERA_PITCH_NODE_NAME "CamPitchNode"
+#define CAMERA_NODE_NAME "CamNode"
