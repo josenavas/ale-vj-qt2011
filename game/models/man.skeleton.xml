@@ -67,27 +67,27 @@
             </rotation>
         </bone>
         <bone id="11" name="Bip01 Spine2">
-            <position x="8.92918" y="-1.52583e-005" z="0.0110488" />
-            <rotation angle="0.086188">
-                <axis x="-1.08191e-005" y="-1" z="-5.96172e-006" />
+            <position x="7.4147" y="0.471522" z="-2.60766" />
+            <rotation angle="0.0969256">
+                <axis x="0.501247" y="0.643672" z="0.578306" />
             </rotation>
         </bone>
         <bone id="12" name="Bip01 Neck">
-            <position x="13.9189" y="1.09139e-011" z="0.000352859" />
-            <rotation angle="0.0207621">
-                <axis x="2.21721e-005" y="1" z="2.26866e-005" />
+            <position x="13.925" y="-9.44138e-005" z="0.000498295" />
+            <rotation angle="0.0790162">
+                <axis x="-2.48983e-008" y="1" z="2.70664e-006" />
             </rotation>
         </bone>
         <bone id="13" name="Bip01 L Clavicle">
-            <position x="0.00606537" y="2.77415" z="-0.000221729" />
-            <rotation angle="3.26387">
-                <axis x="0.600437" y="0.793588" z="0.0984549" />
+            <position x="0.93515" y="1.65033" z="4.76552" />
+            <rotation angle="3.06517">
+                <axis x="0.609803" y="0.779682" z="0.142255" />
             </rotation>
         </bone>
         <bone id="14" name="Bip01 L Shoulder Helper">
-            <position x="8.4752" y="7.62939e-006" z="2.86102e-006" />
-            <rotation angle="2.93474">
-                <axis x="-0.121151" y="0.992417" z="-0.0207406" />
+            <position x="9.10172" y="-3.36713" z="5.15515" />
+            <rotation angle="2.82714">
+                <axis x="-0.0275495" y="0.997655" z="0.062657" />
             </rotation>
         </bone>
         <bone id="15" name="Bip01 L UpperArm">
@@ -205,9 +205,9 @@
             </rotation>
         </bone>
         <bone id="34" name="Bip01 L Wrist Helper">
-            <position x="4.65352" y="0.837143" z="5.25776" />
-            <rotation angle="0">
-                <axis x="-0.0160944" y="0.857027" z="-0.515021" />
+            <position x="-15.6272" y="-14.8236" z="-36.5475" />
+            <rotation angle="1.29469">
+                <axis x="-0.0366485" y="0.935131" z="-0.3524" />
             </rotation>
         </bone>
         <bone id="35" name="Bip01 L UpperArmTwist">
@@ -217,27 +217,27 @@
             </rotation>
         </bone>
         <bone id="36" name="Bip01 Neck1">
-            <position x="0.640167" y="-2.56091e-009" z="-0.0585871" />
+            <position x="0.640167" y="0" z="-0.0585871" />
             <rotation angle="0.0110916">
-                <axis x="-0.000129005" y="1" z="6.72388e-007" />
+                <axis x="-0.000129346" y="1" z="6.299e-007" />
             </rotation>
         </bone>
         <bone id="37" name="Bip01 Head">
-            <position x="5.74158" y="-3.3242e-010" z="-0.00761032" />
-            <rotation angle="0.0588638">
-                <axis x="-0.000696193" y="1" z="2.85583e-005" />
+            <position x="6.31322" y="-1.44863" z="6.20076" />
+            <rotation angle="0.165522">
+                <axis x="-0.277639" y="-0.893701" z="-0.352443" />
             </rotation>
         </bone>
         <bone id="38" name="Bip01 R Clavicle">
-            <position x="0.00961304" y="-2.76798" z="0.0458088" />
-            <rotation angle="3.27372">
-                <axis x="-0.600603" y="0.792608" z="-0.105115" />
+            <position x="0.591194" y="-3.87428" z="5.04446" />
+            <rotation angle="3.14442">
+                <axis x="-0.560981" y="0.807285" z="-0.18328" />
             </rotation>
         </bone>
         <bone id="39" name="Bip01 R Shoulder Helper">
-            <position x="8.4752" y="-7.62939e-006" z="-9.53674e-007" />
-            <rotation angle="3.17927">
-                <axis x="0.980773" y="-0.141287" z="0.134621" />
+            <position x="6.45617" y="3.02924" z="5.92726" />
+            <rotation angle="2.99929">
+                <axis x="0.96372" y="-0.094799" z="0.249514" />
             </rotation>
         </bone>
         <bone id="40" name="Bip01 R UpperArm">
@@ -355,9 +355,9 @@
             </rotation>
         </bone>
         <bone id="59" name="Bip01 R Wrist Helper">
-            <position x="4.65349" y="-0.837227" z="5.25775" />
-            <rotation angle="0">
-                <axis x="0.0617728" y="-0.138989" z="-0.988365" />
+            <position x="-20.0584" y="6.81767" z="-37.9991" />
+            <rotation angle="1.47974">
+                <axis x="-0.200212" y="0.928869" z="0.311637" />
             </rotation>
         </bone>
         <bone id="60" name="Bip01 R UpperArmTwist">
@@ -432,11 +432,11 @@
     <animations />
     <animationlinks>
         <animationlink skeletonName="man_anim_activate.skeleton" scale="1" />
-	<animationlink skeletonName="man_anim_idle.skeleton" scale="1" />
-	<animationlink skeletonName="man_anim_pickup.skeleton" scale="1" />
-	<animationlink skeletonName="man_anim_run.skeleton" scale="1" />
-	<animationlink skeletonName="man_anim_walk.skeleton" scale="1" />
-	<animationlink skeletonName="man_anim_walkleft.skeleton" scale="1" />
-	<animationlink skeletonName="man_anim_walkright.skeleton" scale="1" />
+		<animationlink skeletonName="man_anim_idle.skeleton" scale="1" />
+		<animationlink skeletonName="man_anim_pickup.skeleton" scale="1" />
+		<animationlink skeletonName="man_anim_run.skeleton" scale="1" />
+		<animationlink skeletonName="man_anim_walk.skeleton" scale="1" />
+		<animationlink skeletonName="man_anim_walkleft.skeleton" scale="1" />
+		<animationlink skeletonName="man_anim_walkright.skeleton" scale="1" />
     </animationlinks>
 </skeleton>
