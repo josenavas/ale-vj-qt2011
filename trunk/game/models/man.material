@@ -1,37 +1,14 @@
 
-material 20-Default
+material skin
 {
 	technique
 	{
-		receive_shadows on
-		transparency_casts_shadows on
-		
 		pass
 		{
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 10
-		}
-
-	}
-
-}
-
-
-
-material righteye
-{
-	technique
-	{
-	
-		receive_shadows on
-		transparency_casts_shadows on
-		
-		pass
-		{
-			ambient 0.588 0.588 0.588 1
-			diffuse 0.588 0.588 0.588 1
-			specular 0 0 0 1 10
+			scene_blend one_minus_src_colour dest_colour
 		}
 
 	}
@@ -44,120 +21,12 @@ material 3-Default
 {
 	technique
 	{
-	
-		receive_shadows on
-		transparency_casts_shadows on
-		
 		pass
 		{
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 10
-		}
-
-	}
-
-}
-
-
-
-material skin
-{
-	technique
-	{
-	
-		receive_shadows on
-		transparency_casts_shadows on
-		
-		pass
-		{
-			ambient 0.588 0.588 0.588 1
-			diffuse 0.588 0.588 0.588 1
-			specular 0 0 0 1 10
-		}
-
-	}
-
-}
-
-
-
-material skin
-{
-	technique
-	{
-	
-		receive_shadows on
-		transparency_casts_shadows on
-		
-		pass
-		{
-			ambient 0.588 0.588 0.588 1
-			diffuse 0.588 0.588 0.588 1
-			specular 0 0 0 1 10
-		}
-
-	}
-
-}
-
-
-
-material shirt
-{
-	technique
-	{
-	
-		receive_shadows on
-		transparency_casts_shadows on
-		
-		pass
-		{
-			ambient 0.588 0.588 0.588 1
-			diffuse 0.588 0.588 0.588 1
-			specular 0 0 0 1 10
-		}
-
-	}
-
-}
-
-
-
-material skin
-{
-	technique
-	{
-	
-		receive_shadows on
-		transparency_casts_shadows on
-		
-		pass
-		{
-			ambient 0.588 0.588 0.588 1
-			diffuse 0.588 0.588 0.588 1
-			specular 0 0 0 1 10
-		}
-
-	}
-
-}
-
-
-
-material shirt
-{
-	technique
-	{
-	
-		receive_shadows on
-		transparency_casts_shadows on
-		
-		pass
-		{
-			ambient 0.588 0.588 0.588 1
-			diffuse 0.588 0.588 0.588 1
-			specular 0 0 0 1 10
+			scene_blend one_minus_src_colour dest_colour
 		}
 
 	}
@@ -170,15 +39,66 @@ material righteye
 {
 	technique
 	{
-	
-		receive_shadows on
-		transparency_casts_shadows on
-		
 		pass
 		{
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 10
+			scene_blend one_minus_src_colour dest_colour
+		}
+
+	}
+
+}
+
+
+
+material righteye
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.588 0.588 0.588 1
+			diffuse 0.588 0.588 0.588 1
+			specular 0 0 0 1 10
+			scene_blend one_minus_src_colour dest_colour
+		}
+
+	}
+
+}
+
+
+
+material 20-Default
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.588 0.588 0.588 1
+			diffuse 0.588 0.588 0.588 1
+			specular 0 0 0 1 10
+			scene_blend one_minus_src_colour dest_colour
+		}
+
+	}
+
+}
+
+
+
+material shirt
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.588 0.588 0.588 1
+			diffuse 0.588 0.588 0.588 1
+			specular 0 0 0 1 10
+			scene_blend one_minus_src_colour dest_colour
 		}
 
 	}
@@ -191,15 +111,12 @@ material skin
 {
 	technique
 	{
-	
-		receive_shadows on
-		transparency_casts_shadows on
-		
 		pass
 		{
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 10
+			scene_blend one_minus_src_colour dest_colour
 		}
 
 	}
@@ -208,19 +125,16 @@ material skin
 
 
 
-material skin
+material shirt
 {
 	technique
 	{
-	
-		receive_shadows on
-		transparency_casts_shadows on
-		
 		pass
 		{
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 10
+			scene_blend one_minus_src_colour dest_colour
 		}
 
 	}
@@ -233,15 +147,30 @@ material shoes
 {
 	technique
 	{
-	
-		receive_shadows on
-		transparency_casts_shadows on
-		
 		pass
 		{
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 10
+			scene_blend one_minus_src_colour dest_colour
+		}
+
+	}
+
+}
+
+
+
+material skin
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.588 0.588 0.588 1
+			diffuse 0.588 0.588 0.588 1
+			specular 0 0 0 1 10
+			scene_blend one_minus_src_colour dest_colour
 		}
 
 	}
@@ -254,14 +183,48 @@ material Secondpants
 {
 	technique
 	{
-		receive_shadows on
-		transparency_casts_shadows on
-		
 		pass
 		{
 			ambient 0.588 0.588 0.588 1
 			diffuse 0.588 0.588 0.588 1
 			specular 0 0 0 1 10
+			scene_blend one_minus_src_colour dest_colour
+		}
+
+	}
+
+}
+
+
+
+material skin
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.588 0.588 0.588 1
+			diffuse 0.588 0.588 0.588 1
+			specular 0 0 0 1 10
+			scene_blend one_minus_src_colour dest_colour
+		}
+
+	}
+
+}
+
+
+
+material skin
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.588 0.588 0.588 1
+			diffuse 0.588 0.588 0.588 1
+			specular 0 0 0 1 10
+			scene_blend one_minus_src_colour dest_colour
 		}
 
 	}
