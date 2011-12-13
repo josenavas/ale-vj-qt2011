@@ -2,113 +2,203 @@ Overlays/MenuObjects
 {
 	zorder 200
 	
-	container Panel(Elements/Panel)
+	container Panel(Elements/Item1)
 	{
 		left 0
 		top 0
-		width 1
+		width 0.1
 		height 0.1
 		
-		material Textures/Wood
+		material Textures/Item1
 		
-		container Panel(Elements/Item1)
+		container Panel(Elements/TrueItem1)
 		{
-			left 0
-			top 0
-			width 0.1
-			height 0.1
+			left 0.02
+			top 0.02
+			width 0.06
+			height 0.06
 			
-			material Textures/Item1
+			material Textures/NoItem
 		}
+	}
+	
+	container Panel(Elements/Item2)
+	{
+		left 0.1
+		top 0
+		width 0.1
+		height 0.1
 		
-		container Panel(Elements/Item2)
+		material Textures/Item2
+		
+		container Panel(Elements/TrueItem2)
 		{
-			left 0.1
-			top 0
-			width 0.1
-			height 0.1
+			left 0.02
+			top 0.02
+			width 0.06
+			height 0.06
 			
-			material Textures/Item2
+			material Textures/NoItem
 		}
+	}
+	
+	container Panel(Elements/Item3)
+	{
+		left 0.2
+		top 0
+		width 0.1
+		height 0.1
 		
-		container Panel(Elements/Item3)
+		material Textures/Item3
+		
+		container Panel(Elements/TrueItem3)
 		{
-			left 0.2
-			top 0
-			width 0.1
-			height 0.1
+			left 0.02
+			top 0.02
+			width 0.06
+			height 0.06
 			
-			material Textures/Item3
+			material Textures/NoItem
 		}
+	}
+	
+	container Panel(Elements/Item4)
+	{
+		left 0.3
+		top 0
+		width 0.1
+		height 0.1
 		
-		container Panel(Elements/Item4)
+		material Textures/Item4
+		
+		container Panel(Elements/TrueItem4)
 		{
-			left 0.3
-			top 0
-			width 0.1
-			height 0.1
+			left 0.02
+			top 0.02
+			width 0.06
+			height 0.06
 			
-			material Textures/Item4
+			material Textures/NoItem
 		}
+	}
+	
+	container Panel(Elements/Item5)
+	{
+		left 0.4
+		top 0
+		width 0.1
+		height 0.1
 		
-		container Panel(Elements/Item5)
+		material Textures/Item5
+		
+		container Panel(Elements/TrueItem5)
 		{
-			left 0.4
-			top 0
-			width 0.1
-			height 0.1
+			left 0.02
+			top 0.02
+			width 0.06
+			height 0.06
 			
-			material Textures/Item5
+			material Textures/NoItem
 		}
+	}
+	
+	container Panel(Elements/Item6)
+	{
+		left 0.5
+		top 0
+		width 0.1
+		height 0.1
 		
-		container Panel(Elements/Item6)
+		material Textures/Item6
+		
+		container Panel(Elements/TrueItem6)
 		{
-			left 0.5
-			top 0
-			width 0.1
-			height 0.1
+			left 0.02
+			top 0.02
+			width 0.06
+			height 0.06
 			
-			material Textures/Item6
+			material Textures/NoItem
 		}
+	}
+	
+	container Panel(Elements/Item7)
+	{
+		left 0.6
+		top 0
+		width 0.1
+		height 0.1
 		
-		container Panel(Elements/Item7)
+		material Textures/Item7
+		
+		container Panel(Elements/TrueItem7)
 		{
-			left 0.6
-			top 0
-			width 0.1
-			height 0.1
+			left 0.02
+			top 0.02
+			width 0.06
+			height 0.06
 			
-			material Textures/Item7
+			material Textures/NoItem
 		}
+	}
+	
+	container Panel(Elements/Item8)
+	{
+		left 0.7
+		top 0
+		width 0.1
+		height 0.1
 		
-		container Panel(Elements/Item8)
+		material Textures/Item8
+		
+		container Panel(Elements/TrueItem8)
 		{
-			left 0.7
-			top 0
-			width 0.1
-			height 0.1
+			left 0.02
+			top 0.02
+			width 0.06
+			height 0.06
 			
-			material Textures/Item8
+			material Textures/NoItem
 		}
+	}
+	
+	container Panel(Elements/Item9)
+	{
+		left 0.8
+		top 0
+		width 0.1
+		height 0.1
 		
-		container Panel(Elements/Item9)
+		material Textures/Item9
+		
+		container Panel(Elements/TrueItem9)
 		{
-			left 0.8
-			top 0
-			width 0.1
-			height 0.1
+			left 0.02
+			top 0.02
+			width 0.06
+			height 0.06
 			
-			material Textures/Item9
+			material Textures/NoItem
 		}
+	}
+	
+	container Panel(Elements/Item0)
+	{
+		left 0.9
+		top 0
+		width 0.1
+		height 0.1
 		
-		container Panel(Elements/Item0)
+		material Textures/Item0
+		
+		container Panel(Elements/TrueItem0)
 		{
-			left 0.9
-			top 0
-			width 0.1
-			height 0.1
+			left 0.02
+			top 0.02
+			width 0.06
+			height 0.06
 			
-			material Textures/Item0
+			material Textures/NoItem
 		}
 	}
 }
