@@ -1,4 +1,5 @@
 #include "AbstractScene.h"
+#include <OgreOverlayManager.h>
 
 AbstractScene::AbstractScene()
 {
@@ -43,4 +44,7 @@ void AbstractScene::createSceneCommon(void)
 	Ogre::SceneNode* camNode = camPitchNode->createChildSceneNode(CAMERA_NODE_NAME, Ogre::Vector3(0, 200, 200));
 	camNode->pitch(Ogre::Degree(-27));
 	camNode->attachObject(mCamera);
+
+	Ogre::Overlay* overlay = Ogre::OverlayManager::getSingleton().getByName("Overlays/MenuObjects");
+	overlay->show();
 }

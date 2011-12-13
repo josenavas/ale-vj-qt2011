@@ -71,3 +71,39 @@ material Textures/Interruptor
 		}
 	}
 }
+
+material Textures/Item1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			texture_unit
+			{
+				texture item1.jpg
+			}
+		}
+	}
+}
+
+material Textures/Item0
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			texture_unit
+			{
+				texture item0.jpg
+			}
+		}
+	}
+}
