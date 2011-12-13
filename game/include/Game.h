@@ -1,3 +1,6 @@
+#ifndef __GAME_H
+#define __GAME_H
+
 #include <OgreRoot.h>
 #include "ExampleScene.h"
 #include "InputManager.h"
@@ -22,3 +25,5 @@ private:
 	AbstractScene* mScene;
 	InputManager* mInputMgr;
 };
+
+#endif

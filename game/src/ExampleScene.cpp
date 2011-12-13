@@ -104,4 +104,30 @@ void ExampleScene::createScene(void)
 	node->translate(Ogre::Vector3(0, 250, 750));
 	entRearWall->setMaterialName("Textures/Wall");
 	entRearWall->setCastShadows(false);
+
+	Ogre::Entity* entBed = mSceneMgr->createEntity("Bed", "bed.mesh");
+	node = mSceneMgr->getRootSceneNode()->createChildSceneNode();
+	node->attachObject(entBed);
+	node->translate(Ogre::Vector3(0,entBed->getBoundingBox().getHalfSize().y,-200));
+
+	Ogre::Plane interruptor(Ogre::Vector3::UNIT_X, 0);
+	Ogre::MeshManager::getSingleton().createPlane("interruptor", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, interruptor, 10, 10, 1, 1, true, 1, 1, 1, Ogre::Vector3::UNIT_Y);
+	Ogre::Entity* entInterruptorEntity = mSceneMgr->createEntity("interruptorEntity", "interruptor");
+	node = mSceneMgr->getRootSceneNode()->createChildSceneNode();
+	node->attachObject(entInterruptorEntity);
+	node->yaw(Ogre::Degree(-90));
+	node->translate(Ogre::Vector3(0, mSceneMgr->getEntity(PLAYER_MESH_NAME)->getBoundingBox().getSize().y * Ogre::Real(0.65), -749));
+	entInterruptorEntity->setMaterialName("Textures/Interruptor");
+	entInterruptorEntity->setCastShadows(false);
+}
+
+int ExampleScene::objectInteraction(Ogre::String name)
+{
+	if(!name.compare("interruptorEntity"))
+	{
+		Ogre::Light* l = mSceneMgr->getLight("light1");
+		l->setVisible(!l->getVisible());
+		return OBJECT_ANIM_ACTIV;
+	}
+	return OBJECT_ANIM_NONE;
 }

@@ -36,7 +36,6 @@ void AbstractScene::createSceneCommon(void)
 	Ogre::SceneNode* playerNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(PLAYER_NODE_NAME);
 	playerNode->attachObject(playerEntity);
 
-	//Ogre::SceneNode* camRotNode = playerNode->createChildSceneNode("CamRotNode", Ogre::Vector3(0,0,0));
 	Ogre::SceneNode* camYawNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(CAMERA_YAW_NODE_NAME, Ogre::Vector3(0, 0, 0));
 
 	Ogre::SceneNode* camPitchNode = camYawNode->createChildSceneNode(CAMERA_PITCH_NODE_NAME, Ogre::Vector3(0, 0, 0));
