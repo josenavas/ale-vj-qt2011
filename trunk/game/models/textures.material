@@ -90,6 +90,152 @@ material Textures/Item1
 	}
 }
 
+
+material Textures/Item2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			texture_unit
+			{
+				texture item2.jpg
+			}
+		}
+	}
+}
+
+
+material Textures/Item3
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			texture_unit
+			{
+				texture item3.jpg
+			}
+		}
+	}
+}
+
+material Textures/Item4
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			texture_unit
+			{
+				texture item4.jpg
+			}
+		}
+	}
+}
+
+material Textures/Item5
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			texture_unit
+			{
+				texture item5.jpg
+			}
+		}
+	}
+}
+
+material Textures/Item6
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			texture_unit
+			{
+				texture item6.jpg
+			}
+		}
+	}
+}
+
+material Textures/Item7
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			texture_unit
+			{
+				texture item7.jpg
+			}
+		}
+	}
+}
+
+material Textures/Item8
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			texture_unit
+			{
+				texture item8.jpg
+			}
+		}
+	}
+}
+
+material Textures/Item9
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			texture_unit
+			{
+				texture item9.jpg
+			}
+		}
+	}
+}
+
 material Textures/Item0
 {
 	technique
