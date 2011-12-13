@@ -73,7 +73,7 @@ void ExampleScene::createScene(void)
 	node =  mSceneMgr->getRootSceneNode()->createChildSceneNode();
 	node->attachObject(entLeftWall);
 	node->translate(Ogre::Vector3(-750, 250, 0));
-	entLeftWall->setMaterialName("Textures/Wood");
+	entLeftWall->setMaterialName("Textures/Wall");
 	entLeftWall->setCastShadows(false);
 
 	Ogre::Plane rightWall(-Ogre::Vector3::UNIT_X, 0);
@@ -82,7 +82,7 @@ void ExampleScene::createScene(void)
 	node = mSceneMgr->getRootSceneNode()->createChildSceneNode();
 	node->attachObject(entRightWall);
 	node->translate(Ogre::Vector3(750, 250, 0));
-	entRightWall->setMaterialName("Textures/Wood");
+	entRightWall->setMaterialName("Textures/Wall");
 	entRightWall->setCastShadows(false);
 
 	Ogre::Plane frontWall(Ogre::Vector3::UNIT_X, 0);
@@ -92,7 +92,7 @@ void ExampleScene::createScene(void)
 	node->attachObject(entFrontWall);
 	node->yaw(Ogre::Degree(-90));
 	node->translate(Ogre::Vector3(0, 250, -750));
-	entFrontWall->setMaterialName("Textures/Wood");
+	entFrontWall->setMaterialName("Textures/Wall");
 	entFrontWall->setCastShadows(false);
 
 	Ogre::Plane rearWall(Ogre::Vector3::UNIT_X, 0);
@@ -102,6 +102,6 @@ void ExampleScene::createScene(void)
 	node->attachObject(entRearWall);
 	node->yaw(Ogre::Degree(90));
 	node->translate(Ogre::Vector3(0, 250, 750));
-	entRearWall->setMaterialName("Textures/Wood");
+	entRearWall->setMaterialName("Textures/Wall");
 	entRearWall->setCastShadows(false);
 }
