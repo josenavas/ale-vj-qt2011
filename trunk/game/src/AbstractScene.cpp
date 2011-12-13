@@ -43,5 +43,4 @@ void AbstractScene::createSceneCommon(void)
 	Ogre::SceneNode* camNode = camPitchNode->createChildSceneNode(CAMERA_NODE_NAME, Ogre::Vector3(0, 200, 200));
 	camNode->pitch(Ogre::Degree(-27));
 	camNode->attachObject(mCamera);
-
 }

@@ -403,7 +403,7 @@ int InputManager::executeActive(void)
 	Ogre::RaySceneQueryResult &result = mRaySceneQuery->execute();
 	Ogre::RaySceneQueryResult::iterator itr = result.begin();
 
-	Ogre::Real threshold = Ogre::Real(50);
+	Ogre::Real threshold = Ogre::Real(65);
 
 	for(itr; itr != result.end(); itr++)
 	{
