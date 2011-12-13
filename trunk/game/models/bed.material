@@ -1,11 +1,18 @@
 
 material Material#393_OgreMax
 {
-	technique Map#2
+	technique
 	{
-		pass Map#3
+		pass
 		{
+			ambient 1 1 1 1
+			diffuse 1 1 1 1
 			specular 0 0 0 1 10
+			
+			texture_unit
+			{
+				texture texture_wall.jpg
+			}
 		}
 
 	}

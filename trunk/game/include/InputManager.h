@@ -1,3 +1,6 @@
+#ifndef __INPUT_MANAGER_H
+#define __INPUT_MANAGER_H
+
 #include <OgreRoot.h>
 #include <OgreRenderWindow.h>
 #include <OISEvents.h>
@@ -6,6 +9,7 @@
 #include <OISMouse.h>
 #include <OgreWindowEventUtilities.h>
 #include <OgreEntity.h>
+#include "AbstractScene.h"
 
 class InputManager : public Ogre::WindowEventListener, public Ogre::FrameListener, public OIS::KeyListener, public OIS::MouseListener
 {
@@ -29,6 +33,8 @@ public:
 	virtual bool mousePressed(const OIS::MouseEvent& evt, OIS::MouseButtonID id);
 	virtual bool mouseReleased(const OIS::MouseEvent& evt, OIS::MouseButtonID id);
 
+	void setScene(AbstractScene* scene){mScene = scene;};
+
 private:
 
 	typedef enum {eIDLE, eWALKING, eLEFT, eRIGHT, ePICKUP, eACTIVATE} ePlayerState;
@@ -38,6 +44,8 @@ private:
 	bool collisionControlXNeg(void);
 
 	void orientatePlayer(void);
+
+	int executeActive(void);
 
 	OIS::InputManager* mInputManager;
 	OIS::Mouse* mMouse;
@@ -63,4 +71,8 @@ private:
 	ePlayerState mState;
 
 	Ogre::RaySceneQuery *mRaySceneQuery;
+
+	AbstractScene *mScene;
 };
+
+#endif

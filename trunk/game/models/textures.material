@@ -53,3 +53,21 @@ material Textures/Wall
 		}
 	}
 }
+
+material Textures/Interruptor
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			texture_unit
+			{
+				texture texture_interruptor.jpg
+			}
+		}
+	}
+}

@@ -112,14 +112,6 @@ bool InputManager::frameRenderingQueued(const Ogre::FrameEvent& evt)
 		}
 		break;
 	case ePICKUP:
-		if(mAnimationState->hasEnded())
-		{
-			mPlayerNode->translate(Ogre::Vector3(0,30,0));
-		}
-		else
-		{
-			mPlayerNode->translate(Ogre::Vector3(0,-(evt.timeSinceLastFrame/mAnimationState->getLength()) * 30,0));
-		}
 	case eACTIVATE:
 		if(mAnimationState->hasEnded())
 		{
@@ -278,26 +270,30 @@ bool InputManager::mousePressed(const OIS::MouseEvent& evt, OIS::MouseButtonID i
 {
 	if(mState == eIDLE)
 	{
-		switch(id)
+		if( id == OIS::MB_Left)
 		{
-		case OIS::MB_Left:
-			mAnimationState->setEnabled(false);
-			mAnimationState = mPlayerEntity->getAnimationState("anim_activate");
-			mAnimationState->setTimePosition(Ogre::Real(0));
-			mAnimationState->setEnabled(true);
-			mAnimationState->setLoop(false);
-			mState = eACTIVATE;
-			break;
-		case OIS::MB_Right:
-			mAnimationState->setEnabled(false);
-			mAnimationState = mPlayerEntity->getAnimationState("anim_pickup");
-			mAnimationState->setTimePosition(Ogre::Real(0));
-			mAnimationState->setEnabled(true);
-			mAnimationState->setLoop(false);
-			mState = ePICKUP;
-			break;
-		default:
-			break;
+			switch(executeActive())
+			{
+			case OBJECT_ANIM_ACTIV:
+				mAnimationState->setEnabled(false);
+				mAnimationState = mPlayerEntity->getAnimationState("anim_activate");
+				mAnimationState->setTimePosition(Ogre::Real(0));
+				mAnimationState->setEnabled(true);
+				mAnimationState->setLoop(false);
+				mState = eACTIVATE;
+				break;
+			case OBJECT_ANIM_PICKUP:
+				mAnimationState->setEnabled(false);
+				mAnimationState = mPlayerEntity->getAnimationState("anim_pickup");
+				mAnimationState->setTimePosition(Ogre::Real(0));
+				mAnimationState->setEnabled(true);
+				mAnimationState->setLoop(false);
+				mState = ePICKUP;
+				break;
+			case OBJECT_ANIM_NONE:
+			default:
+				break;
+			}
 		}
 	}
 	return true;
@@ -390,4 +386,33 @@ void InputManager::orientatePlayer(void)
 	Ogre::Vector3 cameraOrientation = mCamYawNode->getOrientation() * (-Ogre::Vector3::UNIT_Z);
 	Ogre::Quaternion q = Ogre::Vector3(playerOrientation.x, 1, playerOrientation.z).getRotationTo(Ogre::Vector3(cameraOrientation.x, 1, cameraOrientation.z));
 	mPlayerNode->yaw( q.getYaw());
+}
+
+int InputManager::executeActive(void)
+{
+	Ogre::Vector3 orientation = mPlayerNode->getOrientation() * (-Ogre::Vector3::UNIT_Z);
+	Ogre::Vector3 playerPos = mPlayerNode->getPosition();
+	playerPos.y = mSceneMgr->getEntity(PLAYER_MESH_NAME)->getBoundingBox().getSize().y * Ogre::Real(0.65);
+
+	Ogre::Ray playerRay(playerPos, orientation);
+
+	mRaySceneQuery->setRay(playerRay);
+
+	mRaySceneQuery->setSortByDistance(true);
+
+	Ogre::RaySceneQueryResult &result = mRaySceneQuery->execute();
+	Ogre::RaySceneQueryResult::iterator itr = result.begin();
+
+	Ogre::Real threshold = Ogre::Real(50);
+
+	for(itr; itr != result.end(); itr++)
+	{
+		if (itr->movable->getName() != PLAYER_MESH_NAME)
+		{
+			if(itr->distance < threshold) return mScene->objectInteraction(itr->movable->getName());
+			break;
+		}
+	}
+
+	return OBJECT_ANIM_NONE;
 }

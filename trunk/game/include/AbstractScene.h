@@ -1,3 +1,6 @@
+#ifndef __ABSTRACT_SCENE_H
+#define __ABSTRACT_SCENE_H
+
 #include <OgreRoot.h>
 #include <OgreEntity.h>
 #include <OgreRenderWindow.h>
@@ -12,6 +15,8 @@ public:
 
 	Ogre::SceneManager* getSceneManager(void);
 
+	virtual int objectInteraction(Ogre::String) = 0;
+
 protected:
 	void createSceneCommon(void);
 
@@ -20,3 +25,5 @@ protected:
 	Ogre::Camera* mCamera;
 	Ogre::RenderWindow* mWindow;
 };
+
+#endif

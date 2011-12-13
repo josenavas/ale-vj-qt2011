@@ -43,6 +43,7 @@ bool Game::go(void)
 
 	mInputMgr = new InputManager(mWindow, mScene->getSceneManager());
 	mInputMgr->windowResized(mWindow);
+	mInputMgr->setScene(mScene);
 
 	Ogre::WindowEventUtilities::addWindowEventListener(mWindow, mInputMgr);
 
