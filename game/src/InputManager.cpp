@@ -128,6 +128,7 @@ bool InputManager::frameRenderingQueued(const Ogre::FrameEvent& evt)
 		break;
 	}
 	mAnimationState->addTime(evt.timeSinceLastFrame);
+	changePointedObject();
 
 	return true;
 }
@@ -390,15 +391,74 @@ void InputManager::orientatePlayer(void)
 
 int InputManager::executeActive(void)
 {
+	Ogre::MovableObject* obj = executeCamRay();
+	return mScene->objectInteraction(obj->getName());
+}
+
+void InputManager::changePointedObject(void)
+{
+	Ogre::MovableObject* obj = executeCamRay();
+	if(NULL == obj)
+	{
+		mScene->setPointedObject(Ogre::String("Nothing"));
+	}
+	else
+	{
+		mScene->setPointedObject(obj->getName());
+	}
+}
+
+Ogre::MovableObject* InputManager::executeCamRay(void)
+{
+	Ogre::Vector3 orientation = mCamNode->_getDerivedOrientation() * (-Ogre::Vector3::UNIT_Z);
+	Ogre::Vector3 camPos = mCamNode->_getDerivedPosition();
+
+	Ogre::Ray camRay(camPos, orientation);
+
+	mRaySceneQuery->setRay(camRay);
+
+	mRaySceneQuery->setSortByDistance(true);
+
+	Ogre::RaySceneQueryResult &result = mRaySceneQuery->execute();
+	Ogre::RaySceneQueryResult::iterator itr = result.begin();
+
+	Ogre::Real threshold = Ogre::Real(350);
+
+	for(itr; itr != result.end(); itr++)
+	{
+		if(itr->distance > Ogre::Real(150))
+		{
+			if (itr->movable->getName() != PLAYER_MESH_NAME)
+			{
+				if(itr->movable->getName().find("Entity") > itr->movable->getName().length())
+				{
+					if(itr->distance < threshold) return itr->movable;
+					else
+					{
+						Ogre::MovableObject* obj = executePlayerRay();
+						if(NULL == obj) return NULL;
+						else if (!obj->getName().compare(itr->movable->getName())) return itr->movable;
+					}
+				}
+				break;
+			}
+			else
+			{
+				threshold = itr->distance + Ogre::Real(65);
+			}
+		}
+	}
+	return NULL;
+}
+
+Ogre::MovableObject* InputManager::executePlayerRay(void)
+{
 	Ogre::Vector3 orientation = mPlayerNode->getOrientation() * (-Ogre::Vector3::UNIT_Z);
 	Ogre::Vector3 playerPos = mPlayerNode->getPosition();
-	playerPos.y = mSceneMgr->getEntity(PLAYER_MESH_NAME)->getBoundingBox().getSize().y * Ogre::Real(0.65);
 
 	Ogre::Ray playerRay(playerPos, orientation);
 
 	mRaySceneQuery->setRay(playerRay);
-
-	mRaySceneQuery->setSortByDistance(true);
 
 	Ogre::RaySceneQueryResult &result = mRaySceneQuery->execute();
 	Ogre::RaySceneQueryResult::iterator itr = result.begin();
@@ -409,10 +469,9 @@ int InputManager::executeActive(void)
 	{
 		if (itr->movable->getName() != PLAYER_MESH_NAME)
 		{
-			if(itr->distance < threshold) return mScene->objectInteraction(itr->movable->getName());
+			if (itr->distance < threshold) return itr->movable;
 			break;
 		}
 	}
-
-	return OBJECT_ANIM_NONE;
+	return NULL;
 }

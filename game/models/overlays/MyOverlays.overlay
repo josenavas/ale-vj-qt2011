@@ -11,7 +11,7 @@ Overlays/MenuObjects
 		
 		material Textures/Item1
 		
-		container Panel(Elements/TrueItem1)
+		container Panel(Elements/Item1Inside)
 		{
 			left 0.02
 			top 0.02
@@ -31,7 +31,7 @@ Overlays/MenuObjects
 		
 		material Textures/Item2
 		
-		container Panel(Elements/TrueItem2)
+		container Panel(Elements/Item2Inside)
 		{
 			left 0.02
 			top 0.02
@@ -51,7 +51,7 @@ Overlays/MenuObjects
 		
 		material Textures/Item3
 		
-		container Panel(Elements/TrueItem3)
+		container Panel(Elements/Item3Inside)
 		{
 			left 0.02
 			top 0.02
@@ -71,7 +71,7 @@ Overlays/MenuObjects
 		
 		material Textures/Item4
 		
-		container Panel(Elements/TrueItem4)
+		container Panel(Elements/Item4Inside)
 		{
 			left 0.02
 			top 0.02
@@ -91,7 +91,7 @@ Overlays/MenuObjects
 		
 		material Textures/Item5
 		
-		container Panel(Elements/TrueItem5)
+		container Panel(Elements/Item5Inside)
 		{
 			left 0.02
 			top 0.02
@@ -111,7 +111,7 @@ Overlays/MenuObjects
 		
 		material Textures/Item6
 		
-		container Panel(Elements/TrueItem6)
+		container Panel(Elements/Item6Inside)
 		{
 			left 0.02
 			top 0.02
@@ -131,7 +131,7 @@ Overlays/MenuObjects
 		
 		material Textures/Item7
 		
-		container Panel(Elements/TrueItem7)
+		container Panel(Elements/Item7Inside)
 		{
 			left 0.02
 			top 0.02
@@ -151,7 +151,7 @@ Overlays/MenuObjects
 		
 		material Textures/Item8
 		
-		container Panel(Elements/TrueItem8)
+		container Panel(Elements/Item8Inside)
 		{
 			left 0.02
 			top 0.02
@@ -171,7 +171,7 @@ Overlays/MenuObjects
 		
 		material Textures/Item9
 		
-		container Panel(Elements/TrueItem9)
+		container Panel(Elements/Item9Inside)
 		{
 			left 0.02
 			top 0.02
@@ -191,7 +191,7 @@ Overlays/MenuObjects
 		
 		material Textures/Item0
 		
-		container Panel(Elements/TrueItem0)
+		container Panel(Elements/Item0Inside)
 		{
 			left 0.02
 			top 0.02
@@ -199,6 +199,36 @@ Overlays/MenuObjects
 			height 0.06
 			
 			material Textures/NoItem
+		}
+	}
+}
+
+Overlays/ObjectName
+{
+	zorder 200
+	// Stats block
+	container BorderPanel(Elements/PanelText)
+	{
+		metrics_mode pixels
+		vert_align top
+		left 5 
+		top 65
+		width 90
+		height 30
+
+
+		element TextArea(Elements/NameText)
+		{
+			metrics_mode pixels
+			left 5
+			top 5
+			width 90
+			height 30
+			font_name StarWars
+			char_height 16
+			caption Nothing
+			colour_top 1 1 0
+			colour_bottom 1 1 0
 		}
 	}
 }

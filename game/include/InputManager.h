@@ -45,6 +45,11 @@ private:
 
 	void orientatePlayer(void);
 
+	void changePointedObject(void);
+
+	Ogre::MovableObject* executeCamRay(void);
+	Ogre::MovableObject* executePlayerRay(void);
+
 	int executeActive(void);
 
 	OIS::InputManager* mInputManager;

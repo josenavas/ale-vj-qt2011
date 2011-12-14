@@ -324,3 +324,21 @@ material Textures/NoItem
 		}
 	}
 }
+
+material Textures/Black
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			texture_unit
+			{
+				texture nothing.jpg
+			}
+		}
+	}
+}

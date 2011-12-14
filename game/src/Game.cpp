@@ -2,6 +2,7 @@
 
 #include <OgreConfigFile.h>
 #include <OgreException.h>
+#include <OgreFontManager.h>
 
 Game::Game(void)
 	: mRoot(0),
@@ -94,6 +95,12 @@ void Game::initialisingResources(void)
 	Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
 	//initialise all resource groups
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+
+	Ogre::ResourceManager::ResourceMapIterator iter = Ogre::FontManager::getSingleton().getResourceIterator();
+	while(iter.hasMoreElements())
+	{
+		iter.getNext()->load();
+	}
 }
 
 #if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
