@@ -53,24 +53,34 @@ void AbstractScene::createSceneCommon(void)
 
 	mOverlayObjName = Ogre::OverlayManager::getSingleton().getByName("Overlays/ObjectName");
 	mOverlayObjName->show();
+
+	for(unsigned int i = 0; i < 10; i++) mHasElements[i] = false;
 }
 
-void AbstractScene::getItem(Ogre::String name)
+void AbstractScene::addItemToInventary(Ogre::String name)
 {
-	Ogre::Overlay::Overlay2DElementsIterator iter = mOverlayItems->get2DElementsIterator();
-
-	Ogre::String itemName("");
-
-	while(iter.hasMoreElements())
+	unsigned int i;
+	for(i = 0; i < 10; i++)
 	{
-		Ogre::OverlayContainer* cont = iter.getNext();
-		if( !cont->getName().compare(name) )
-		{
-			Ogre::OverlayContainer* item = (Ogre::OverlayContainer*)cont->getChild(name+"Inside");
-			itemName = item->getMaterialName();
-			item->setMaterialName(NO_ITEM_MATERIAL);
-		}
+		if(! mObjectNames[i]->compare(name) ) break;
 	}
+	Ogre::String nameItem("Elements/Item"+i);
+	Ogre::String nameItemInside(nameItem+"Inside");
+	mHasElements[i] = true;
+	mOverlayItems->getChild(nameItem)->getChild(nameItemInside)->setMaterialName("OverlayTextures/"+name);
+}
+
+void AbstractScene::RemoveItemFromInventary(Ogre::String name)
+{
+	unsigned int i;
+	for(i = 0; i < 10; i++)
+	{
+		if(! mObjectNames[i]->compare(name) ) break;
+	}
+	Ogre::String nameItem("Elements/Item"+i);
+	Ogre::String nameItemInside(nameItem+"Inside");
+	mHasElements[i] = false;
+	mOverlayItems->getChild(nameItem)->getChild(nameItemInside)->setMaterialName("OverlayTextures/NoItem");
 }
 
 void AbstractScene::setPointedObject(Ogre::String name)
