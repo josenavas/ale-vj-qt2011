@@ -1,48 +1,18 @@
 
-material Material#393_OgreMax
+material Material#33
 {
 	technique
 	{
 		pass
 		{
-			ambient 1 1 1 1
-			diffuse 1 1 1 1
+			ambient 0.4 0.4 0.4 1
+			diffuse 0.4 0.4 0.4 1
 			specular 0 0 0 1 10
 			
 			texture_unit
 			{
-				texture texture_wall.jpg
+				texture suburbanqueenbed.dds
 			}
-		}
-
-	}
-
-}
-
-
-
-material Material#133_OgreMax
-{
-	technique Map#0
-	{
-		pass Map#1
-		{
-			specular 0 0 0 1 25
-		}
-
-	}
-
-}
-
-
-
-material Material#426_OgreMax
-{
-	technique Map#4
-	{
-		pass Map#5
-		{
-			specular 0 0 0 1 10
 		}
 
 	}
