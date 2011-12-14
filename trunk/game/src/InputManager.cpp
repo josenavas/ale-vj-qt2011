@@ -392,6 +392,7 @@ void InputManager::orientatePlayer(void)
 int InputManager::executeActive(void)
 {
 	Ogre::MovableObject* obj = executeCamRay();
+	if(obj == NULL) return OBJECT_ANIM_NONE;
 	return mScene->objectInteraction(obj->getName());
 }
 
@@ -422,7 +423,7 @@ Ogre::MovableObject* InputManager::executeCamRay(void)
 	Ogre::RaySceneQueryResult &result = mRaySceneQuery->execute();
 	Ogre::RaySceneQueryResult::iterator itr = result.begin();
 
-	Ogre::Real threshold = Ogre::Real(350);
+	Ogre::Real threshold = Ogre::Real(400);
 
 	for(itr; itr != result.end(); itr++)
 	{
