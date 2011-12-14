@@ -18,7 +18,8 @@ public:
 
 	virtual int objectInteraction(Ogre::String) = 0;
 
-	void getItem(Ogre::String);
+	void addItemToInventary(Ogre::String);
+	void RemoveItemFromInventary(Ogre::String);
 
 	void setPointedObject(Ogre::String);
 
@@ -29,10 +30,13 @@ protected:
 	Ogre::SceneManager* mSceneMgr;
 	Ogre::Camera* mCamera;
 	Ogre::RenderWindow* mWindow;
+	Ogre::String* mObjectNames[10];
+
+private:
+
 	Ogre::Overlay* mOverlayItems;
 	Ogre::Overlay* mOverlayObjName;
-
-	bool mHasElements;
+	bool mHasElements[10];
 };
 
 #endif
