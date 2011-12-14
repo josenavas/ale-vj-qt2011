@@ -1,6 +1,10 @@
 #ifndef __EXAMPLE_SCENE_H
 #define __EXAMPLE_SCENE_H
 
+#define xLen 500
+#define yLen 200
+#define zLen 500
+
 #include "AbstractScene.h"
 
 class ExampleScene : AbstractScene
@@ -12,9 +16,6 @@ public:
 	virtual int objectInteraction(Ogre::String);
 
 private:
-	static const int xLen = 500;
-	static const int yLen = 200;
-	static const int zLen = 500;
 
 	void putWalls(void);
 	void putLights(void);
