@@ -76,6 +76,4 @@ void AbstractScene::getItem(Ogre::String name)
 void AbstractScene::setPointedObject(Ogre::String name)
 {
 	mOverlayObjName->getChild("Elements/PanelText")->getChild("Elements/NameText")->setCaption(Ogre::DisplayString(name));
-	mOverlayObjName->hide();
-	mOverlayObjName->show();
 }
