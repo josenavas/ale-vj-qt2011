@@ -1,4 +1,4 @@
-material Textures/MRAMOR
+material Textures/floor
 {
 	technique
 	{
@@ -19,7 +19,7 @@ material Textures/MRAMOR
 	}
 }
 
-material Textures/shutters
+material Textures/windows
 {
 	technique
 	{
@@ -41,29 +41,7 @@ material Textures/shutters
 	}
 }
 
-material Textures/glass
-{
-	technique
-	{
-		pass
-		{
-			ambient 0.1 0.1 0.1
-			diffuse 0.8 0.8 0.8
-			specular 0.8 0.8 0.8 1.0
-			emissive 1.0 1.0 1.0 1.0
-			
-			receive_shadows off
-			transparency_casts_shadows on
-			
-			texture_unit
-			{
-				texture HighRiseGlass0027_2_S.jpg
-			}
-		}
-	}
-}
-
-material Textures/carpet
+material Textures/wall
 {
 	technique
 	{
@@ -78,13 +56,34 @@ material Textures/carpet
 			
 			texture_unit
 			{
-				texture Carpet0002_2_S.jpg
+				texture wall2.jpg
 			}
 		}
 	}
 }
 
-material Textures/plaster
+material Textures/writing
+{
+	technique
+	{
+		pass
+		{		
+			ambient 0.1 0.1 0.1
+			diffuse 0.8 0.8 0.8
+			specular 0.8 0.8 0.8 1.0
+			
+			receive_shadows on
+			transparency_casts_shadows on
+				
+			texture_unit
+			{
+				texture wall2_writing.jpg
+			}
+		}
+	}
+}
+
+material Textures/roof
 {
 	technique
 	{
@@ -99,49 +98,7 @@ material Textures/plaster
 			
 			texture_unit
 			{
-				texture PlasterColoured0262_17_S.jpg
-			}
-		}
-	}
-}
-
-material Textures/Wood
-{
-	technique
-	{
-		pass
-		{
-			ambient 0.0 0.0 0.0
-			diffuse 0.5 0.5 0.5
-			specular 0.8 0.8 0.8 1.0
-			
-			receive_shadows on
-			transparency_casts_shadows on
-			
-			texture_unit
-			{
-				texture Wood_Floor.jpg
-			}
-		}
-	}
-}
-
-material Textures/Wall
-{
-	technique
-	{
-		pass
-		{
-			ambient 0.0 0.0 0.0
-			diffuse 0.5 0.5 0.5
-			specular 0.8 0.8 0.8 1.0
-			
-			receive_shadows on
-			transparency_casts_shadows on
-			
-			texture_unit
-			{
-				texture texture_wall.jpg
+				texture wall1.jpg
 			}
 		}
 	}
