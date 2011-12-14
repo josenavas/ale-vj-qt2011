@@ -16,9 +16,9 @@ public:
 	virtual int objectInteraction(Ogre::String);
 
 private:
-
 	void putWalls(void);
 	void putLights(void);
+	void putObjects(void);
 };
 
 #endif
