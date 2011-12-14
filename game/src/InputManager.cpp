@@ -430,14 +430,15 @@ Ogre::MovableObject* InputManager::executeCamRay(void)
 		{
 			if (itr->movable->getName() != PLAYER_MESH_NAME)
 			{
-				if(itr->movable->getName().find("Entity") > itr->movable->getName().length())
+				if(itr->movable->getName().find("Wall") > itr->movable->getName().length())
 				{
 					if(itr->distance < threshold) return itr->movable;
 					else
 					{
 						Ogre::MovableObject* obj = executePlayerRay();
 						if(NULL == obj) return NULL;
-						else if (!obj->getName().compare(itr->movable->getName())) return itr->movable;
+						else if (!obj->getName().compare(itr->movable->getName()))
+							if(itr->movable->getName().find("Wall") > itr->movable->getName().length()) return itr->movable;
 					}
 				}
 				break;
