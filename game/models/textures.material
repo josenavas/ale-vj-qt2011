@@ -6,6 +6,7 @@ material Textures/MRAMOR
 		{
 			ambient 0.1 0.1 0.1
 			diffuse 0.8 0.8 0.8
+			specular 0.8 0.8 0.8 1.0
 			
 			receive_shadows on
 			transparency_casts_shadows on
@@ -13,6 +14,92 @@ material Textures/MRAMOR
 			texture_unit
 			{
 				texture MRAMOR6X6.jpg
+			}
+		}
+	}
+}
+
+material Textures/shutters
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.1 0.1
+			diffuse 0.8 0.8 0.8
+			specular 0.8 0.8 0.8 1.0
+			emissive 1.0 1.0 1.0 1.0
+			
+			receive_shadows off
+			transparency_casts_shadows on
+			
+			texture_unit
+			{
+				texture WindowsShutters.jpg
+			}
+		}
+	}
+}
+
+material Textures/glass
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.1 0.1
+			diffuse 0.8 0.8 0.8
+			specular 0.8 0.8 0.8 1.0
+			emissive 1.0 1.0 1.0 1.0
+			
+			receive_shadows off
+			transparency_casts_shadows on
+			
+			texture_unit
+			{
+				texture HighRiseGlass0027_2_S.jpg
+			}
+		}
+	}
+}
+
+material Textures/carpet
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.1 0.1
+			diffuse 0.8 0.8 0.8
+			specular 0.8 0.8 0.8 1.0
+			
+			receive_shadows on
+			transparency_casts_shadows on
+			
+			texture_unit
+			{
+				texture Carpet0002_2_S.jpg
+			}
+		}
+	}
+}
+
+material Textures/plaster
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.1 0.1 0.1
+			diffuse 0.8 0.8 0.8
+			specular 0.8 0.8 0.8 1.0
+			
+			receive_shadows on
+			transparency_casts_shadows on
+			
+			texture_unit
+			{
+				texture PlasterColoured0262_17_S.jpg
 			}
 		}
 	}
@@ -27,6 +114,9 @@ material Textures/Wood
 			ambient 0.0 0.0 0.0
 			diffuse 0.5 0.5 0.5
 			specular 0.8 0.8 0.8 1.0
+			
+			receive_shadows on
+			transparency_casts_shadows on
 			
 			texture_unit
 			{
@@ -46,6 +136,9 @@ material Textures/Wall
 			diffuse 0.5 0.5 0.5
 			specular 0.8 0.8 0.8 1.0
 			
+			receive_shadows on
+			transparency_casts_shadows on
+			
 			texture_unit
 			{
 				texture texture_wall.jpg
@@ -63,6 +156,9 @@ material Textures/Interruptor
 			ambient 0.0 0.0 0.0
 			diffuse 0.5 0.5 0.5
 			specular 0.8 0.8 0.8 1.0
+			
+			receive_shadows on
+			transparency_casts_shadows on
 			
 			texture_unit
 			{
