@@ -1,5 +1,8 @@
 #include "AbstractScene.h"
 #include <OgreOverlayManager.h>
+#include <OgreOverlayContainer.h>
+
+#define NO_ITEM_MATERIAL "Textures/NoItem"
 
 AbstractScene::AbstractScene()
 {
@@ -37,14 +40,42 @@ void AbstractScene::createSceneCommon(void)
 	Ogre::SceneNode* playerNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(PLAYER_NODE_NAME);
 	playerNode->attachObject(playerEntity);
 
-	Ogre::SceneNode* camYawNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(CAMERA_YAW_NODE_NAME, Ogre::Vector3(0, 0, 0));
+	Ogre::SceneNode* camYawNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(CAMERA_YAW_NODE_NAME, Ogre::Vector3(0, playerEntity->getBoundingBox().getHalfSize().y, 0));
 
 	Ogre::SceneNode* camPitchNode = camYawNode->createChildSceneNode(CAMERA_PITCH_NODE_NAME, Ogre::Vector3(0, 0, 0));
 
-	Ogre::SceneNode* camNode = camPitchNode->createChildSceneNode(CAMERA_NODE_NAME, Ogre::Vector3(0, 200, 200));
+	Ogre::SceneNode* camNode = camPitchNode->createChildSceneNode(CAMERA_NODE_NAME, Ogre::Vector3(0, 200-playerEntity->getBoundingBox().getHalfSize().y, 200));
 	camNode->pitch(Ogre::Degree(-27));
 	camNode->attachObject(mCamera);
 
-	Ogre::Overlay* overlay = Ogre::OverlayManager::getSingleton().getByName("Overlays/MenuObjects");
-	overlay->show();
+	mOverlayItems = Ogre::OverlayManager::getSingleton().getByName("Overlays/MenuObjects");
+	mOverlayItems->show();
+
+	mOverlayObjName = Ogre::OverlayManager::getSingleton().getByName("Overlays/ObjectName");
+	mOverlayObjName->show();
+}
+
+void AbstractScene::getItem(Ogre::String name)
+{
+	Ogre::Overlay::Overlay2DElementsIterator iter = mOverlayItems->get2DElementsIterator();
+
+	Ogre::String itemName("");
+
+	while(iter.hasMoreElements())
+	{
+		Ogre::OverlayContainer* cont = iter.getNext();
+		if( !cont->getName().compare(name) )
+		{
+			Ogre::OverlayContainer* item = (Ogre::OverlayContainer*)cont->getChild(name+"Inside");
+			itemName = item->getMaterialName();
+			item->setMaterialName(NO_ITEM_MATERIAL);
+		}
+	}
+}
+
+void AbstractScene::setPointedObject(Ogre::String name)
+{
+	mOverlayObjName->getChild("Elements/PanelText")->getChild("Elements/NameText")->setCaption(Ogre::DisplayString(name));
+	mOverlayObjName->hide();
+	mOverlayObjName->show();
 }
