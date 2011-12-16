@@ -531,8 +531,15 @@ bool InputManager::mouseReleasedStyleLevel(const OIS::MouseEvent& evt, OIS::Mous
 
 bool InputManager::keyPressedStyleMenu(const OIS::KeyEvent& evt)
 {
-	if(evt.key == OIS::KC_ESCAPE) mShutDown = true;
-	else if(evt.key == OIS::KC_RETURN) mScene->objectInteraction(Ogre::String(Ogre::String("")));
+	switch(evt.key)
+	{
+	case OIS::KC_ESCAPE:
+		mShutDown = true;
+		break;
+	case OIS::KC_RETURN:
+		mScene->objectInteraction(Ogre::String(""));
+		break;
+	}
 	return true;
 }
 

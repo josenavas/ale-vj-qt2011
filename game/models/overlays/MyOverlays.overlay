@@ -235,7 +235,7 @@ Overlays/ObjectName
 
 Overlays/StartGame
 {
-	zorder 100
+	zorder 200
 	
 	container Panel(Elements/Tittle)
 	{
