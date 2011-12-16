@@ -229,10 +229,12 @@ bool InputManager::collisionControlXNeg(void)
 
 void InputManager::orientatePlayer(void)
 {
-	Ogre::Vector3 playerOrientation = mPlayerNode->getOrientation() * (-Ogre::Vector3::UNIT_Z);
-	Ogre::Vector3 cameraOrientation = mCamYawNode->getOrientation() * (-Ogre::Vector3::UNIT_Z);
-	Ogre::Quaternion q = Ogre::Vector3(playerOrientation.x, 1, playerOrientation.z).getRotationTo(Ogre::Vector3(cameraOrientation.x, 1, cameraOrientation.z));
-	mPlayerNode->yaw( q.getYaw());
+	//Ogre::Vector3 playerOrientation = mPlayerNode->getOrientation() * (-Ogre::Vector3::UNIT_Z);
+	//Ogre::Vector3 cameraOrientation = mCamYawNode->getOrientation() * (-Ogre::Vector3::UNIT_Z);
+	//Ogre::Quaternion q = Ogre::Vector3(playerOrientation.x, 1, playerOrientation.z).getRotationTo(Ogre::Vector3(cameraOrientation.x, 1, cameraOrientation.z));
+	//mPlayerNode->yaw( q.getYaw());
+	mPlayerNode->yaw(mAcumYaw);
+	mAcumYaw = Ogre::Degree(0.0f);
 }
 
 int InputManager::executeActive(void)
@@ -507,10 +509,12 @@ bool InputManager::keyReleasedStyleLevel(const OIS::KeyEvent& evt)
 
 bool InputManager::mouseMovedStyleLevel(const OIS::MouseEvent& evt)
 {
-	mCamYawNode->yaw(Ogre::Degree(-mRotate * evt.state.X.rel), Ogre::Node::TS_WORLD);
+	Ogre::Degree degreeYaw(-mRotate * evt.state.X.rel);
+	mAcumYaw = mAcumYaw + degreeYaw;
+	mCamYawNode->yaw(degreeYaw, Ogre::Node::TS_WORLD);
 	if(evt.state.Y.rel < 0)
 	{
-		if(mCamNode->_getDerivedPosition().y > Ogre::Real(30)) mCamPitchNode->pitch(Ogre::Degree(-mRotate * evt.state.Y.rel), Ogre::Node::TS_LOCAL);
+		if(mCamNode->_getDerivedPosition().y > Ogre::Real(30))mCamPitchNode->pitch(Ogre::Degree(-mRotate * evt.state.Y.rel), Ogre::Node::TS_LOCAL);
 	}
 	else
 	{
@@ -602,6 +606,7 @@ void InputManager::initScene(AbstractScene* scene)
 		mShutDown = false;
 		mState = eIDLE;
 		mLeftShiftDown = false;
+		mAcumYaw = Ogre::Degree(0.0f);
 	}
 	else mShutDown = true;
 }
