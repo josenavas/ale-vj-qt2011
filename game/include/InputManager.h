@@ -14,7 +14,7 @@
 class InputManager : public Ogre::WindowEventListener, public Ogre::FrameListener, public OIS::KeyListener, public OIS::MouseListener
 {
 public:
-	InputManager(Ogre::RenderWindow* window, Ogre::SceneManager* sceneManager);
+	InputManager(Ogre::RenderWindow* window, Ogre::Root* root);
 	~InputManager(void);
 
 	// Ogre::WindowEventListener
@@ -33,9 +33,20 @@ public:
 	virtual bool mousePressed(const OIS::MouseEvent& evt, OIS::MouseButtonID id);
 	virtual bool mouseReleased(const OIS::MouseEvent& evt, OIS::MouseButtonID id);
 
-	void setScene(AbstractScene* scene){mScene = scene;};
-
 private:
+	void initScene(AbstractScene*);
+
+	bool keyPressedStyleLevel(const OIS::KeyEvent& evt);
+	bool keyReleasedStyleLevel(const OIS::KeyEvent& evt);
+	bool mouseMovedStyleLevel(const OIS::MouseEvent& evt);
+	bool mousePressedStyleLevel(const OIS::MouseEvent& evt, OIS::MouseButtonID id);
+	bool mouseReleasedStyleLevel(const OIS::MouseEvent& evt, OIS::MouseButtonID id);
+
+	bool keyPressedStyleMenu(const OIS::KeyEvent& evt);
+	bool keyReleasedStyleMenu(const OIS::KeyEvent& evt);
+	bool mouseMovedStyleMenu(const OIS::MouseEvent& evt);
+	bool mousePressedStyleMenu(const OIS::MouseEvent& evt, OIS::MouseButtonID id);
+	bool mouseReleasedStyleMenu(const OIS::MouseEvent& evt, OIS::MouseButtonID id);
 
 	typedef enum {eIDLE, eWALKING, eLEFT, eRIGHT, ePICKUP, eACTIVATE} ePlayerState;
 
@@ -49,6 +60,7 @@ private:
 
 	Ogre::MovableObject* executeCamRay(void);
 	Ogre::MovableObject* executePlayerRay(void);
+	Ogre::MovableObject* executePlayerHandRay(void);
 
 	int executeActive(void);
 
@@ -78,6 +90,8 @@ private:
 	Ogre::RaySceneQuery *mRaySceneQuery;
 
 	AbstractScene *mScene;
+
+	bool mSceneIsLevel;
 };
 
 #endif

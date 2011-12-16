@@ -2,7 +2,7 @@
 #include <OgreOverlayManager.h>
 #include <OgreOverlayContainer.h>
 
-#define NO_ITEM_MATERIAL "Textures/NoItem"
+#define NO_ITEM_MATERIAL "OverlayTextures/NoItem"
 
 AbstractScene::AbstractScene()
 {
@@ -25,8 +25,7 @@ void AbstractScene::createSceneCommon(void)
 {
 	// create the camera
 	mCamera = mSceneMgr->createCamera(PLAYER_CAM_NAME);
-	mCamera->setNearClipDistance(1);
-
+	mCamera->setNearClipDistance(20);
 	// Create one viewport, entire window
 	Ogre::Viewport* vp = mWindow->addViewport(mCamera);
 	vp->setBackgroundColour(Ogre::ColourValue(0,0,0));
@@ -55,35 +54,77 @@ void AbstractScene::createSceneCommon(void)
 	mOverlayObjName->show();
 
 	for(unsigned int i = 0; i < 10; i++) mHasElements[i] = false;
+
+	mSceneMgr->setAmbientLight(Ogre::ColourValue(0,0,0));
+
+	mExit = false;
+	mTime = 2;
+	mMove = Ogre::Real(20);
 }
 
 void AbstractScene::addItemToInventary(Ogre::String name)
 {
 	unsigned int i;
-	for(i = 0; i < 10; i++)
+	for(i = 0; i < 10; i++) if(!mObjectNames[i]->compare(name)) break;
+	if( i < 10)
 	{
-		if(! mObjectNames[i]->compare(name) ) break;
+		if(i < 9) i++;
+		else if(i == 9) i = 0;
+		std::stringstream ss;
+		ss << i;
+		Ogre::String nameItem("Elements/Item"+ss.str());
+		Ogre::String nameItemInside(nameItem+"Inside");
+		mHasElements[i] = true;
+		mOverlayItems->getChild(nameItem)->getChild(nameItemInside)->setMaterialName("OverlayTextures/"+name);
 	}
-	Ogre::String nameItem("Elements/Item"+i);
-	Ogre::String nameItemInside(nameItem+"Inside");
-	mHasElements[i] = true;
-	mOverlayItems->getChild(nameItem)->getChild(nameItemInside)->setMaterialName("OverlayTextures/"+name);
+}
+
+bool AbstractScene::isItemInInventary(Ogre::String name)
+{
+	unsigned int i;
+	for (i = 0; i < 10; i++) if(!mObjectNames[i]->compare(name)) break;
+	if( i < 10)
+	{
+		if(i < 9) i++;
+		else if(i == 9) i = 0;
+		return mHasElements[i];
+	}
+	return false;
 }
 
 void AbstractScene::RemoveItemFromInventary(Ogre::String name)
 {
 	unsigned int i;
-	for(i = 0; i < 10; i++)
+	for(i = 0; i < 10; i++) if(! mObjectNames[i]->compare(name) ) break;
+	if( i < 10 )
 	{
-		if(! mObjectNames[i]->compare(name) ) break;
+		if(i < 9) i++;
+		else if(i == 9) i = 0;
+		std::stringstream ss;
+		ss << i;
+		Ogre::String nameItem("Elements/Item"+ss.str());
+		Ogre::String nameItemInside(nameItem+"Inside");
+		mHasElements[i] = false;
+		mOverlayItems->getChild(nameItem)->getChild(nameItemInside)->setMaterialName(NO_ITEM_MATERIAL);
 	}
-	Ogre::String nameItem("Elements/Item"+i);
-	Ogre::String nameItemInside(nameItem+"Inside");
-	mHasElements[i] = false;
-	mOverlayItems->getChild(nameItem)->getChild(nameItemInside)->setMaterialName("OverlayTextures/NoItem");
 }
 
 void AbstractScene::setPointedObject(Ogre::String name)
 {
 	mOverlayObjName->getChild("Elements/PanelText")->getChild("Elements/NameText")->setCaption(Ogre::DisplayString(name));
+}
+
+bool AbstractScene::animationFinish(Ogre::Real time)
+{
+	if(mExit)
+	{
+		if(mTime > 0)
+		{
+			mSceneMgr->getSceneNode(CAMERA_NODE_NAME)->roll(Ogre::Degree(time*Ogre::Real(mMove)));
+			mTime = mTime - time;
+			mMove += 20;
+			return false;
+		}
+	}
+	return true;
 }

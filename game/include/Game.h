@@ -2,7 +2,6 @@
 #define __GAME_H
 
 #include <OgreRoot.h>
-#include "ExampleScene.h"
 #include "InputManager.h"
 
 class Game
@@ -22,7 +21,6 @@ private:
 	Ogre::String mResourcesCfg;
 	Ogre::RenderWindow* mWindow;
 
-	AbstractScene* mScene;
 	InputManager* mInputMgr;
 };
 

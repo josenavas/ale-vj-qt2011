@@ -19,12 +19,20 @@ public:
 	virtual int objectInteraction(Ogre::String) = 0;
 
 	void addItemToInventary(Ogre::String);
+	bool isItemInInventary(Ogre::String);
 	void RemoveItemFromInventary(Ogre::String);
 
 	void setPointedObject(Ogre::String);
 
+	bool animationFinish(Ogre::Real time);
+
+	virtual bool isLevelScene(void) = 0;
+
+	virtual AbstractScene* getNextScene(void) = 0;
+
 protected:
 	void createSceneCommon(void);
+	virtual void initObjectNames(void) = 0;
 
 	Ogre::Root* mRoot;
 	Ogre::SceneManager* mSceneMgr;
@@ -32,8 +40,9 @@ protected:
 	Ogre::RenderWindow* mWindow;
 	Ogre::String* mObjectNames[10];
 
-private:
-
+	bool mExit;
+	Ogre::Real mTime;
+	Ogre::Real mMove;
 	Ogre::Overlay* mOverlayItems;
 	Ogre::Overlay* mOverlayObjName;
 	bool mHasElements[10];

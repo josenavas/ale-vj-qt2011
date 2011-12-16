@@ -21,3 +21,62 @@ material Material#49
 }
 
 
+material Material/KeyRed
+{
+	technique
+	{
+		pass
+		{
+			ambient 1 0 0 1
+			diffuse 1 0 0 1
+			specular 0 0 0 1 20
+			emissive 1.0 0 0 1.0
+			
+			texture_unit
+			{
+				texture key01.dds
+			}
+		}
+
+	}
+}
+
+material Material/KeyGreen
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 1 0 1
+			diffuse 0 1 0 1
+			specular 0 0 0 1 20
+			emissive 0 1.0 0 1.0
+			
+			texture_unit
+			{
+				texture key01.dds
+			}
+		}
+
+	}
+}
+
+material Material/KeyBlue
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 1 1
+			diffuse 0 0 1 1
+			specular 0 0 0 1 20
+			emissive 0 0 1.0 1.0
+			
+			texture_unit
+			{
+				texture key01.dds
+			}
+		}
+
+	}
+}

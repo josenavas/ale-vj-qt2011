@@ -232,3 +232,18 @@ Overlays/ObjectName
 		}
 	}
 }
+
+Overlays/StartGame
+{
+	zorder 100
+	
+	container Panel(Elements/Tittle)
+	{
+		left 0
+		top 0
+		width 1
+		height 1
+		
+		material OverlayTextures/ScapeTittle
+	}
+}

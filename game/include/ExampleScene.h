@@ -14,6 +14,11 @@ public:
 	~ExampleScene(void);
 	virtual void createScene(void);
 	virtual int objectInteraction(Ogre::String);
+	virtual bool isLevelScene(void){return true;};
+	virtual AbstractScene* getNextScene(void){return NULL;};
+
+protected:
+	virtual void initObjectNames(void);
 
 private:
 	void putWalls(void);
