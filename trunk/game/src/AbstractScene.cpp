@@ -123,6 +123,9 @@ bool AbstractScene::animationFinish(Ogre::Real time)
 			mSceneMgr->getSceneNode(CAMERA_NODE_NAME)->roll(Ogre::Degree(time*Ogre::Real(mMove)));
 			mTime = mTime - time;
 			mMove += 20;
+		}
+		else
+		{
 			return false;
 		}
 	}

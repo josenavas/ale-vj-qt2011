@@ -11,7 +11,7 @@ public:
 
 	virtual void createScene(void);
 	virtual int objectInteraction(Ogre::String);
-	virtual bool isLevelScene(void){return true;};
+	virtual bool isLevelScene(void){return false;};
 	virtual AbstractScene* getNextScene(void);
 
 protected:
