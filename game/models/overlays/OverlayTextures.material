@@ -305,3 +305,203 @@ material OverlayTextures/ScapeTittle
 		}
 	}
 }
+
+material OverlayTextures/YouWin
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			texture_unit
+			{
+				texture YouWin.jpg
+			}
+		}
+	}
+}
+
+material OverlayTextures/Item1Selected
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			texture_unit
+			{
+				texture item1Selected.jpg
+			}
+		}
+	}
+}
+
+
+material OverlayTextures/Item2Selected
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			texture_unit
+			{
+				texture item2Selected.jpg
+			}
+		}
+	}
+}
+
+
+material OverlayTextures/Item3Selected
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			texture_unit
+			{
+				texture item3Selected.jpg
+			}
+		}
+	}
+}
+
+material OverlayTextures/Item4Selected
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			texture_unit
+			{
+				texture item4Selected.jpg
+			}
+		}
+	}
+}
+
+material OverlayTextures/Item5Selected
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			texture_unit
+			{
+				texture item5Selected.jpg
+			}
+		}
+	}
+}
+
+material OverlayTextures/Item6Selected
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			texture_unit
+			{
+				texture item6Selected.jpg
+			}
+		}
+	}
+}
+
+material OverlayTextures/Item7Selected
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			texture_unit
+			{
+				texture item7Selected.jpg
+			}
+		}
+	}
+}
+
+material OverlayTextures/Item8Selected
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			texture_unit
+			{
+				texture item8Selected.jpg
+			}
+		}
+	}
+}
+
+material OverlayTextures/Item9Selected
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			texture_unit
+			{
+				texture item9Selected.jpg
+			}
+		}
+	}
+}
+
+material OverlayTextures/Item0Selected
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			texture_unit
+			{
+				texture item0Selected.jpg
+			}
+		}
+	}
+}

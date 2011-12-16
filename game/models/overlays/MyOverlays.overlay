@@ -247,3 +247,18 @@ Overlays/StartGame
 		material OverlayTextures/ScapeTittle
 	}
 }
+
+Overlays/EndGame
+{
+	zorder 200
+	
+	container Panel(Elements/Winner)
+	{
+		left 0
+		top 0
+		width 1
+		height 1
+		
+		material OverlayTextures/YouWin
+	}
+}

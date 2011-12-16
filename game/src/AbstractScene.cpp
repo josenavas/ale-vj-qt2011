@@ -10,6 +10,8 @@ AbstractScene::AbstractScene()
 
 AbstractScene::~AbstractScene(void)
 {
+	mWindow->removeAllViewports();
+	mRoot->destroySceneManager(mSceneMgr);
 }
 
 void AbstractScene::createScene(void)
@@ -60,6 +62,7 @@ void AbstractScene::createSceneCommon(void)
 	mExit = false;
 	mTime = 2;
 	mMove = Ogre::Real(20);
+	mCurrentSelected = 10;
 }
 
 void AbstractScene::addItemToInventary(Ogre::String name)
@@ -77,6 +80,19 @@ void AbstractScene::addItemToInventary(Ogre::String name)
 		mHasElements[i] = true;
 		mOverlayItems->getChild(nameItem)->getChild(nameItemInside)->setMaterialName("OverlayTextures/"+name);
 	}
+}
+
+bool AbstractScene::isSelectedItem(Ogre::String name)
+{
+	unsigned int i;
+	for (i = 0; i < 10; i++) if(!mObjectNames[i]->compare(name)) break;
+	if( i < 10)
+	{
+		if(i < 9) i++;
+		else if(i == 9) i = 0;
+		return mCurrentSelected == i;
+	}
+	return false;
 }
 
 bool AbstractScene::isItemInInventary(Ogre::String name)
@@ -106,6 +122,30 @@ void AbstractScene::RemoveItemFromInventary(Ogre::String name)
 		Ogre::String nameItemInside(nameItem+"Inside");
 		mHasElements[i] = false;
 		mOverlayItems->getChild(nameItem)->getChild(nameItemInside)->setMaterialName(NO_ITEM_MATERIAL);
+		Ogre::String nameTexture("OverlayTextures/Item"+ss.str());
+		mOverlayItems->getChild(nameItem)->setMaterialName(nameTexture);
+	}
+}
+
+void AbstractScene::selectItemOfInventary(unsigned int i)
+{
+	if(mHasElements[i])
+	{
+		if(mCurrentSelected < 10)
+		{
+			std::stringstream ss1;
+			ss1 << mCurrentSelected;
+			Ogre::String nameItem1("Elements/Item"+ss1.str());
+			Ogre::String nameTexture1("OverlayTextures/Item"+ss1.str());
+			mOverlayItems->getChild(nameItem1)->setMaterialName(nameTexture1);
+		}
+
+		mCurrentSelected = i;
+		std::stringstream ss;
+		ss << i;
+		Ogre::String nameItem("Elements/Item"+ss.str());
+		Ogre::String nameTexture("OverlayTextures/Item"+ss.str()+"Selected");
+		mOverlayItems->getChild(nameItem)->setMaterialName(nameTexture);
 	}
 }
 

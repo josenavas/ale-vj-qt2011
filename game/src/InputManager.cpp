@@ -1,7 +1,6 @@
 #include "InputManager.h"
 #include <OgreQuaternion.h>
 #include "Definitions.h"
-#include "ExampleScene.h"
 #include "StartScene.h"
 
 InputManager::InputManager(Ogre::RenderWindow* window, Ogre::Root* root)
@@ -29,8 +28,7 @@ InputManager::InputManager(Ogre::RenderWindow* window, Ogre::Root* root)
 	mKeyboard->setEventCallback(this);
 
 	mScene = NULL;
-	initScene((AbstractScene*) new ExampleScene(root, window));
-	//initScene((AbstractScene* )new StartScene(root, window));
+	initScene((AbstractScene* )new StartScene(root, window));
 }
 
 InputManager::~InputManager(void)
@@ -416,6 +414,36 @@ bool InputManager::keyPressedStyleLevel(const OIS::KeyEvent& evt)
 			mAnimationState->setEnabled(true);
 			mAnimationState->setLoop(true);
 		}
+		break;
+	case OIS::KC_0:
+		mScene->selectItemOfInventary(0);
+		break;
+	case OIS::KC_1:
+		mScene->selectItemOfInventary(1);
+		break;
+	case OIS::KC_2:
+		mScene->selectItemOfInventary(2);
+		break;
+	case OIS::KC_3:
+		mScene->selectItemOfInventary(3);
+		break;
+	case OIS::KC_4:
+		mScene->selectItemOfInventary(4);
+		break;
+	case OIS::KC_5:
+		mScene->selectItemOfInventary(5);
+		break;
+	case OIS::KC_6:
+		mScene->selectItemOfInventary(6);
+		break;
+	case OIS::KC_7:
+		mScene->selectItemOfInventary(7);
+		break;
+	case OIS::KC_8:
+		mScene->selectItemOfInventary(8);
+		break;
+	case OIS::KC_9:
+		mScene->selectItemOfInventary(9);
 		break;
 	default:
 		break;

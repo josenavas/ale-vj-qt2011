@@ -1,4 +1,5 @@
 #include "ExampleScene.h"
+#include "EndScene.h"
 #include <OgreCamera.h>
 #include <OgreViewport.h>
 #include <OgreSceneManager.h>
@@ -104,7 +105,7 @@ int ExampleScene::objectInteraction(Ogre::String name)
 		return OBJECT_ANIM_ACTIV;
 	}
 
-	if(!name.compare(HOLE_GREEN_ENTITY) && isItemInInventary(SHELF_KEY_RED_ENTITY))
+	if(!name.compare(HOLE_GREEN_ENTITY) && /*isItemInInventary(SHELF_KEY_RED_ENTITY)*/ isSelectedItem(SHELF_KEY_RED_ENTITY))
 	{
 		RemoveItemFromInventary(SHELF_KEY_RED_ENTITY);
 		mSceneMgr->getSceneNode(SHELF_KEY_NODE)->attachObject(mSceneMgr->getEntity(SHELF_KEY_ENTITY));
@@ -112,7 +113,7 @@ int ExampleScene::objectInteraction(Ogre::String name)
 		return OBJECT_ANIM_ACTIV;
 	}
 
-	if(!name.compare(HOLE_RED_ENTITY) && isItemInInventary(SHELF_KEY_BLUE_ENTITY))
+	if(!name.compare(HOLE_RED_ENTITY) && /*isItemInInventary(SHELF_KEY_BLUE_ENTITY)*/ isSelectedItem(SHELF_KEY_BLUE_ENTITY))
 	{
 		RemoveItemFromInventary(SHELF_KEY_BLUE_ENTITY);
 		mSceneMgr->getEntity(HOLE_GREEN_ENTITY)->setVisible(true);
@@ -120,7 +121,7 @@ int ExampleScene::objectInteraction(Ogre::String name)
 		return OBJECT_ANIM_ACTIV;
 	}
 
-	if(!name.compare(HOLE_BLUE_ENTITY) && isItemInInventary(SHELF_KEY_GREEN_ENTITY))
+	if(!name.compare(HOLE_BLUE_ENTITY) && /*isItemInInventary(SHELF_KEY_GREEN_ENTITY)*/ isSelectedItem(SHELF_KEY_GREEN_ENTITY))
 	{
 		RemoveItemFromInventary(SHELF_KEY_GREEN_ENTITY);
 		mSceneMgr->getEntity(HOLE_RED_ENTITY)->setVisible(true);
@@ -134,9 +135,8 @@ int ExampleScene::objectInteraction(Ogre::String name)
 		return OBJECT_ANIM_ACTIV;
 	}
 
-	if(!name.compare(EXIT_DOOR_ENTITY) && isItemInInventary(SHELF_KEY_ENTITY) )
+	if(!name.compare(EXIT_DOOR_ENTITY) && /*isItemInInventary(SHELF_KEY_ENTITY)*/ isSelectedItem(SHELF_KEY_ENTITY) )
 	{
-		// TODO: Hemos ganado!!
 		RemoveItemFromInventary(SHELF_KEY_ENTITY);
 		mExit = true;
 		return OBJECT_ANIM_ACTIV;
@@ -246,16 +246,6 @@ void ExampleScene::putLights(void)
 	lsun->setSpecularColour(0.7f, 0.7f, 0.7f);
 	lsun->setDirection(0, -1, -5);
 	lsun->setAttenuation(Ogre::Real(3250), Ogre::Real(1.0), Ogre::Real(0.0014), Ogre::Real(0.000007));
-	
-	//Ogre::Light* lRed = mSceneMgr->createLight("RedLight");
-	//lRed->setType(Ogre::Light::LT_SPOTLIGHT);
-	//lRed->setPosition(xLen/4, yLen, -zLen/4);
-	//lRed->setDirection(2, -1, 0);
-	//lRed->setDiffuseColour(1.0, 0.0, 0.0);
-	//lRed->setSpecularColour(1.0, 0.0, 0.0);	
- //   lRed->setSpotlightRange(Ogre::Degree(35), Ogre::Degree(50));
-	//lRed->setAttenuation(Ogre::Real(3250), Ogre::Real(1.0), Ogre::Real(0.0014), Ogre::Real(0.000007));
-	//lRed->setVisible(false);
 }
 
 void ExampleScene::putWalls(void)
@@ -359,4 +349,9 @@ void ExampleScene::putWalls(void)
 	entGreenHole->setMaterialName("Textures/GreenHole");
 	entGreenHole->setCastShadows(false);
 	entGreenHole->setVisible(false);
+}
+
+AbstractScene* ExampleScene::getNextScene(void)
+{
+	return (AbstractScene*) new EndScene(mRoot, mWindow);
 }
