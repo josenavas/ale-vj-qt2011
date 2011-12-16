@@ -92,6 +92,8 @@ private:
 	AbstractScene *mScene;
 
 	bool mSceneIsLevel;
+
+	Ogre::Degree mAcumYaw;
 };
 
 #endif
