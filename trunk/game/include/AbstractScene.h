@@ -22,6 +22,9 @@ public:
 	bool isItemInInventary(Ogre::String);
 	void RemoveItemFromInventary(Ogre::String);
 
+	void selectItemOfInventary(unsigned int i);
+	bool isSelectedItem(Ogre::String);
+
 	void setPointedObject(Ogre::String);
 
 	bool animationFinish(Ogre::Real time);
@@ -46,6 +49,7 @@ protected:
 	Ogre::Overlay* mOverlayItems;
 	Ogre::Overlay* mOverlayObjName;
 	bool mHasElements[10];
+	unsigned int mCurrentSelected;
 };
 
 #endif

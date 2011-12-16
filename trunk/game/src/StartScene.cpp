@@ -19,11 +19,11 @@ void StartScene::createScene(void)
 	createSceneCommon();
 	initObjectNames();
 
-	//mOverlayItems->hide();
-	//mOverlayObjName->hide();
+	mOverlayItems->hide();
+	mOverlayObjName->hide();
 
-	//mOverlay = Ogre::OverlayManager::getSingleton().getByName("Overlays/StartGame");
-	//mOverlay->show();
+	mOverlay = Ogre::OverlayManager::getSingleton().getByName("Overlays/StartGame");
+	mOverlay->show();
 }
 
 void StartScene::initObjectNames(void)
@@ -35,6 +35,7 @@ int StartScene::objectInteraction(Ogre::String name)
 {
 	mTime = 0;
 	mExit = true;
+	mOverlay->hide();
 	return OBJECT_ANIM_NONE;
 }
 
