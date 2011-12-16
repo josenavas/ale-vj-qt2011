@@ -124,3 +124,68 @@ material Textures/Interruptor
 		}
 	}
 }
+
+material Textures/RedHole
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			receive_shadows on
+			transparency_casts_shadows on
+			
+			texture_unit
+			{
+				texture wall2_redhole.jpg
+			}
+		}
+	}
+}
+
+
+material Textures/BlueHole
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			receive_shadows on
+			transparency_casts_shadows on
+			
+			texture_unit
+			{
+				texture wall2_bluehole.jpg
+			}
+		}
+	}
+}
+
+
+material Textures/GreenHole
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.0 0.0 0.0
+			diffuse 0.5 0.5 0.5
+			specular 0.8 0.8 0.8 1.0
+			
+			receive_shadows on
+			transparency_casts_shadows on
+			
+			texture_unit
+			{
+				texture wall2_greenhole.jpg
+			}
+		}
+	}
+}

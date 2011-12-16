@@ -15,7 +15,6 @@ Game::~Game(void)
 {
 	Ogre::WindowEventUtilities::removeWindowEventListener(mWindow, mInputMgr);
 	mInputMgr->windowClosed(mWindow);
-	delete mScene;
 	delete mInputMgr;
 	delete mRoot;
 }
@@ -39,12 +38,8 @@ bool Game::go(void)
 
 	initialisingResources();
 
-	mScene = (AbstractScene*) new ExampleScene(mRoot, mWindow);
-	mScene->createScene();
-
-	mInputMgr = new InputManager(mWindow, mScene->getSceneManager());
+	mInputMgr = new InputManager(mWindow, mRoot);
 	mInputMgr->windowResized(mWindow);
-	mInputMgr->setScene(mScene);
 
 	Ogre::WindowEventUtilities::addWindowEventListener(mWindow, mInputMgr);
 
